@@ -1,0 +1,14 @@
+北 京：PEK ；重 庆：CKG；成 都：CTU； 武 汉：WUH；海 口：HAK；郑 州：CGO
+上海浦东：PVG ；上海虹桥：SHA；长 沙：CSX； 杭 州：HGH；厦 门：XMF；昆 明：KMG
+桂 林：KWL； 南 昌：KHN；兰 州：LHW； 济 南：TNA；青 岛：TAO；大 连：DLC
+南 通：NTG；长 春：CGQ；沈 阳：SHE； 烟 台：YNT；西 安：SIA；宁 波：NGB
+天 津：TSH；常 德：CGD；襄 樊：XFN； 无 锡：WUX；贵 阳：KWE：义 乌：YIW
+三 亚：SYX；南 京：NKG；丽 江：LJG； 湛 江：ZHA；银 川：INC；常 州：CZX
+宜 昌：YIH；南 阳：NNY；宜 宾：YBP； 南 宁：NNG；西 宁：XNN；黄 山：TXN
+太 原：TYN；温 州：WUZ；晋 江：JJN； 衢 州：JUZ；合 肥：HFE；福 州：FOC
+丹 东：DDG；洛 阳：LYA；北 海：BHY； 伊 宁：YIN；梧 州：WUZ；延 安：ENY
+西 昌：XIC；威 海：WEH；苏 州：SZV； 大 理：DLU；拉 萨：LXA；吉 林：JIL
+广 州：CAN；衡 阳：HNY；黄 岩：HYN； 九 江：JIU；柳 州：LZH；汕 头：SWA
+澳 门：MFM；珠 海：ZUH；临 沧：LNJ； 铜 仁：TEN；延 吉：YNJ；汉 中：HZG
+乌鲁木齐：URC；齐齐哈尔：NDG； 呼和浩特：HET； 西双版纳：JHG； 龙岩连城：LCX； 西安咸阳：XIY
+哈 尔 滨：HRB；张 家 界：DYG； 景 德 镇：JDZ； 武 夷 山：WUS； 石 家 庄：SJW； 佳 木 斯：JUM
