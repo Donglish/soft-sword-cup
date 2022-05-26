@@ -3,10 +3,10 @@
       <div class="container">
         <div 
           style=
-           "width:80%;
+           "width:100%;
             height:80%;
             margin-top:50px;
-            margin-left:50px"
+            "
         >      
           <query></query>
         </div>
