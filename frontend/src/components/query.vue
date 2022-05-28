@@ -6,8 +6,9 @@
                 "width:35px;
                 height:35px;
                 background-color: #ffffff;
-                margin-top:10px;
-                margin-left:10px
+                margin-top:25px;
+                margin-left:10px;
+                margin-bottom:25px;
                 "
                 circle
                 >
@@ -23,12 +24,53 @@
                 1
                 </div>
             </el-button>    
-                <h5 style="font-weight:400;">
-                出发地
-            </h5>   
-            <h5 style="font-weight:400">
-                目的地
-            </h5>           
+            <div 
+                style=
+                    "display:inline-block;
+                     width:220px"
+            >
+                <h5 style="font-weight:400;margin-left:20px">
+                    出发地
+                </h5> 
+            </div>
+            <div 
+                style="display:inline-block;">
+                <el-button 
+                  style=
+                    "width:35px;
+                    height:35px;
+                    background-color: #ffffff;
+                    "  
+                    circle
+                >
+                <i 
+                    class="el-icon-sort"
+                    style=
+                        "color:#303133;
+                        font-size:20px;
+                        position:absolute;
+                        font-weight:300;
+                        margin-top:-10px;
+                        margin-left:-10px;
+                        transform:rotate(90deg)
+                        "
+                >
+                </i>
+            </el-button>
+            </div>
+            <div 
+                style=
+                    "display:inline-block;
+                     width:220px"
+            >
+                <h5 
+                    style=
+                        "font-weight:400;
+                        margin-left:20px"
+                >
+                        目的地
+                </h5>  
+            </div>  
         </div>
         <div class="dateContainer">
             <el-row 
@@ -52,7 +94,12 @@
                 </div>
             </el-row>
         </div>
-        <div style="display:inline-block;position:relative">
+        <div 
+            style=
+            "display:inline-block;
+             position:relative;
+             margin-left:30px;
+             ">
              <el-button 
                 class = "delete"  
                 circle
@@ -95,6 +142,7 @@ export default {
         height: 85x;
         margin-left: 40px;
         display:inline-block;
+        vertical-align: middle;
     }
     .Container:hover{
     box-shadow: 0 0 15px 0 rgb(0 0 0 / 15%);
@@ -106,8 +154,9 @@ export default {
         box-shadow: 0 0 12px 0 rgb(0 0 0 / 6%);
         width:330px;
         height: 85px;
-        margin-left: 630px;
+        margin-left: 20px;
         display: inline-block;
+        vertical-align: middle;
     }
     .dateContainer:hover{
         box-shadow: 0 0 15px 0 rgb(0 0 0 / 15%);
