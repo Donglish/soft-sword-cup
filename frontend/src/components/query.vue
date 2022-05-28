@@ -1,87 +1,18 @@
 <template>
     <div>
-        <div class="Container">  
-            <el-button 
-                style=
-                "width:35px;
-                height:35px;
-                background-color: #ffffff;
-                margin-top:25px;
-                margin-left:10px;
-                margin-bottom:25px;
-                "
-                circle
-                >
-                <div
-                    style="color:#303133;
-                        font-size:25px;
-                        position:absolute;
-                        font-weight:400;
-                        margin-top:-12px;
-                        margin-left:-4px
-                        "
-                >
-                1
-                </div>
-            </el-button>    
-            <div 
-                style=
-                    "display:inline-block;
-                     width:220px"
-            >
-                <h5 style="font-weight:400;margin-left:20px">
-                    出发地
-                </h5> 
-            </div>
-            <div 
-                style="display:inline-block;">
-                <el-button 
-                  style=
-                    "width:35px;
-                    height:35px;
-                    background-color: #ffffff;
-                    "  
-                    circle
-                >
-                <i 
-                    class="el-icon-sort"
-                    style=
-                        "color:#303133;
-                        font-size:20px;
-                        position:absolute;
-                        font-weight:300;
-                        margin-top:-10px;
-                        margin-left:-10px;
-                        transform:rotate(90deg)
-                        "
-                >
-                </i>
-            </el-button>
-            </div>
-            <div 
-                style=
-                    "display:inline-block;
-                     width:220px"
-            >
-                <h5 
-                    style=
-                        "font-weight:400;
-                        margin-left:20px"
-                >
-                        目的地
-                </h5>  
-            </div>  
+        <div style="display:inline-block">
+        <city></city>
         </div>
         <div class="dateContainer">
             <el-row 
                 style=
-                "margin-top:10px;
+                "margin-top:5px;
                 margin-left:10px;
                 margin-bottom:5px;"
             >
-                <h5 style="font-weight:300">
+                <h6 style="font-weight:200">
                     出发日期
-                </h5>
+                </h6>
             </el-row>
             <el-row style="margin-left:5px">
                 <div class="block">
@@ -122,38 +53,28 @@
 </template>
 
 <script>
+import city from '@/components/city.vue'
 export default {
     data(){
-        return {
+     
+     return {
             value1:""
         }
+    },
+    components:{
+        city
     }
 }
 </script>
 
 <style>
-
-    .Container {
-        border-radius: 6px;
-        background-color:#ffffff;
-        border: 1px solid #eee;
-        box-shadow: 0 0 12px 0 rgb(0 0 0 / 6%);
-        width:560px;
-        height: 85x;
-        margin-left: 40px;
-        display:inline-block;
-        vertical-align: middle;
-    }
-    .Container:hover{
-    box-shadow: 0 0 15px 0 rgb(0 0 0 / 15%);
-    }
     .dateContainer {
         border-radius: 6px;
         background-color:#ffffff;
         border: 1px solid #eee;
         box-shadow: 0 0 12px 0 rgb(0 0 0 / 6%);
         width:330px;
-        height: 85px;
+        height: 65px;
         margin-left: 20px;
         display: inline-block;
         vertical-align: middle;
