@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ticketPage from '@/views/ticketPage'
-import result from '@/views/result'
+import result from '@/components/result'
 Vue.use(VueRouter)
 
 const routes = [
