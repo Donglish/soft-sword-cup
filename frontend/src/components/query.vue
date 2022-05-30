@@ -1,68 +1,84 @@
 <template>
-    <div>
-        <div style="display:inline-block">
-        <city></city>
-        </div>
-        <div class="dateContainer">
-            <el-row 
-                style=
-                "margin-top:5px;
-                margin-left:10px;
-                margin-bottom:5px;"
-            >
-                <h6 style="font-weight:200">
-                    出发日期
-                </h6>
-            </el-row>
-            <el-row style="margin-left:5px">
-                <div class="block">
-                    <el-date-picker
-                        v-model="value1"
-                        type="date"
-                        placeholder="选择日期"
-                    >
-                    </el-date-picker>
-                </div>
-            </el-row>
-        </div>
-        <div 
-            style=
-            "display:inline-block;
-             position:relative;
-             margin-left:30px;
-             ">
-             <el-button 
-                class = "delete"  
-                circle
-                type="text"
-             >
-                <i 
-                class="el-icon-close"
-                style="color:#303133;
-                        font-size:30px;
-                        position:absolute;
-                        font-weight:700;
-                        margin-top:-14.5px;
-                        margin-left:-14.5px
-                        "
+    <el-collapse-transition>
+        <div v-show="showTotal">
+            <div style="display:inline-block">
+               <city :id="id"></city>
+            </div>
+            <div class="dateContainer">
+                <el-row 
+                    style=
+                    "margin-top:5px;
+                    margin-left:10px;
+                    margin-bottom:5px;"
                 >
-                </i>
-            </el-button>
-        </div>    
-    </div>
+                    <h4 style="font-weight:200;margin-top:17px;margin-left:10px" @click="change" v-show="!showDate">
+                        出发日期
+                    </h4>
+                </el-row>
+                <el-row style="margin-left:10px;margin-top:8px" v-show="showDate">
+                    <div class="block">
+                        <el-date-picker
+                            v-model="value1"
+                            type="date"
+                            placeholder="选择日期"
+                        
+                        >
+                        </el-date-picker>
+                    </div>
+                </el-row>
+            </div>
+            <div 
+                style=
+                "display:inline-block;
+                position:relative;
+                margin-left:30px;
+                ">
+                <el-button 
+                    class = "delete"  
+                    circle
+                    type="text"
+                    @click="showTotal = false"
+                >
+                    <i 
+                    class="el-icon-close"
+                    style="color:#303133;
+                            font-size:30px;
+                            position:absolute;
+                            font-weight:700;
+                            margin-top:-14.5px;
+                            margin-left:-14.5px
+                            "
+                    >
+                    </i>
+                </el-button>
+            </div>    
+        </div>
+    </el-collapse-transition>
 </template>
 
 <script>
 import city from '@/components/city.vue'
 export default {
     data(){
-     
      return {
-            value1:""
+            value1:"",
+            showDate:false,
+            showTotal:true
         }
     },
     components:{
         city
+    },
+    methods:{
+        change(){
+            this.showDate = !this.showDate;
+        },
+    },
+    props:{
+        id:{
+            type:Number,
+            required:true
+        }
     }
 }
 </script>
@@ -76,6 +92,7 @@ export default {
         width:330px;
         height: 65px;
         margin-left: 20px;
+        margin-top: 9px;
         display: inline-block;
         vertical-align: middle;
     }

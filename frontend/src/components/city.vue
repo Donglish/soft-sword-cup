@@ -18,10 +18,10 @@
                         position:absolute;
                         font-weight:400;
                         margin-top:-12px;
-                        margin-left:-4px
+                        margin-left:-3.5px
                         "
                 >
-                1
+                {{this.id}}
                 </div>
             </el-button>   
         </div>
@@ -46,7 +46,7 @@
               </div>
             </div>
             <div class="city-wrraper" @click.stop>
-                <el-tabs v-model="activeName" v-show="switchArea">
+                <el-tabs v-model="activeName" v-show="switchArea" style="margin-left:20px">
                     <el-tab-pane label="热门" name="热门">
                       <ul class="hot-city city-group">
                         <li class="city-item start-city-item" v-for="(city, i) in hotCities" :key="i"
@@ -71,7 +71,7 @@
                       </div>
                     </el-tab-pane>
                 </el-tabs>
-                <el-tabs v-model="activeName" v-show="!switchArea">
+                <el-tabs v-model="activeName" v-show="!switchArea" style="margin-left:10px">
                     <el-tab-pane :label="key" :name="key" v-for="(value, key) in data2" :key="key">
                       <ul class="hot-city city-group">
                         <li class="city-item start-city-item" v-for="(city, i) in value" :key="i"
@@ -98,7 +98,9 @@
         </div>
       </div>
       <div class="switch-icon" @click.stop="witchLocation($event)">
-        <span class="iconfont icon-double-arrows"></span>
+        <span class="iconfont icon-double-arrows">
+          <img src="../assets/arrow.png" style="width:20px;height:20px"/>
+        </span>
       </div>
       <div class="ending" ref="endingRef">
         <label class="d-label">目的地</label>
@@ -120,7 +122,7 @@
               </div>
             </div>
             <div class="city-wrraper" @click.stop>
-                <el-tabs v-model="activeName" v-show="switchArea">
+                <el-tabs v-model="activeName" v-show="switchArea" style="margin-left:20px">
                     <el-tab-pane label="热门" name="热门">
                       <ul class="hot-city city-group">
                         <li class="city-item ending-city-item" v-for="(city, i) in hotCities" :key="i"
@@ -145,7 +147,7 @@
                       </div>
                     </el-tab-pane>
                 </el-tabs>
-                <el-tabs v-model="activeName" v-show="!switchArea">
+                <el-tabs v-model="activeName" v-show="!switchArea" style="margin-left:10px">
                     <el-tab-pane :label="key" :name="key" v-for="(value, key) in data2" :key="key">
                       <ul class="hot-city city-group">
                         <li class="city-item ending-city-item" v-for="(city, i) in value" :key="i"
@@ -202,8 +204,8 @@
         characterCities: ['阿泰勒', '阿克苏', '鞍山', '安庆', '安顺', '阿拉善左', '中国澳门', '阿里', '阿拉善右', '阿尔山'],
         data: {
           'ABCDEF': {
-            A: ['a阿泰勒', '阿克苏', '包头', '毕节', '北海', '北京', '博乐', '保山', '白城', '布尔津', '白山', '巴彦淖尔'],
-            B: ['巴中', '百色', '鞍山', '安庆', '安顺', '阿拉善左', '中国澳门', '阿里', '阿拉善右', '阿尔山'],
+            A: ['阿泰勒', '阿克苏',  '鞍山', '安庆', '安顺', '阿拉善左', '中国澳门', '阿里', '阿拉善右', '阿尔山'],
+            B: ['包头', '毕节', '北海', '北京', '博乐', '保山', '白城', '布尔津', '白山', '巴彦淖尔','巴中', '百色'],
             C: ['昌都', '承德', '常德', '长春', '朝阳', '赤峰', '长治', '重庆', '长沙', '成都', '沧源', '常州', '池州'],
             D: ['大同', '达州', '稻城', '丹东', '迪庆', '大连', '大理', '敦煌', '东营', '大庆', '德令哈'],
             E: ['鄂尔多斯', '额济纳旗', '恩施', '二连浩特'],
@@ -250,11 +252,16 @@
           { name: '北京', spell: 'beijing' }, { name: '巴黎', spell: 'bali' },
           { name: '广州', spell: 'guangzhou' }, { name: '成都', spell: 'chengdu' },
           { name: '大连', spell: 'dalian' }, { name: '大阪', spell: 'daban' },
-          { name: '饿了么', spell: 'eleme' }, { name: '额', spell: 'e' },
           { name: '福州', spell: 'fuzhou' }, { name: '釜山', spell: 'fushan' },
         ],
         // 保存城市搜索结果
         searchResult: [],
+      }
+    },
+    props:{
+      id:{
+        type:Number,
+        required: true
       }
     },
     methods: {
@@ -597,6 +604,7 @@
       width: 570px;
       position: relative;
       vertical-align: middle;
+      box-shadow: 0 0 12px 0 rgb(0 0 0 / 6%);
     .form{
       vertical-align: middle;
       display: inline-block;
@@ -641,7 +649,6 @@
         height: 62px;
         position: absolute;
         left: 15px;
-        background: url(//pic.c-ctrip.com/fltcommon/index/ico/input-liner.png);
         top: -15px;
       }
       .starting{
@@ -755,6 +762,7 @@
     border: 1px solid gainsboro;
     // width: 0px;
     display: none;
+    z-index: 10;
   }
   .search-area{
     position: absolute;
@@ -830,6 +838,7 @@
   }
   .city-wrraper{
     float: right;
+    position: relative;
     // position: absolute;
     // right: 0;
     width: 630px;
@@ -837,6 +846,8 @@
     border-left: 1px solid gainsboro;
     box-sizing: border-box;
     background-color: white;
+    z-index: 10;
+
   }
   @keyframes beformMove {
     0%{

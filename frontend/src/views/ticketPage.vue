@@ -1,21 +1,25 @@
 <template>
   <div class="body">
       <div class="container">
-        <div 
+        <el-scrollbar 
           style=
            "width:100%;
-            height:80%;
-            margin-top:50px;
+            height:440px;
+            margin-top:70px;
+            margin-bottom:10px;            
             "
         >      
-          <query></query>
-        </div>
+          <div v-for="(item,id) in num" :key="id">
+          <query :id="id+1"></query>
+          </div>
+        </el-scrollbar >
         <el-button 
             type="primary"  
             style=
             " margin-left:3%;
             "
             icon="el-icon-plus"
+            @click="num = num + 1"
           >
             再加一程
           </el-button>
@@ -51,7 +55,7 @@ import query from '@/components/query.vue'
 export default {
   data(){
     return{
-
+      num: 1,
     }
   },
   components:{
@@ -107,4 +111,14 @@ export default {
       width: 100%;
       /* opacity: 0.8; */
     }
+    .el-scrollbar__wrap {
+    overflow-x: hidden !important;
+    }
+  .el-scrollbar__bar{
+     opacity: 1 !important;
+   }
+   .el-scrollbar__thumb{
+     background: #dbd9d9 !important;     
+     border-radius: 3px !important;
+   }
 </style>
