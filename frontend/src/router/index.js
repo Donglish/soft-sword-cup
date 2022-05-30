@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ticketPage from '@/views/ticketPage'
-import query from '@/components/query'
+import result from '@/views/result'
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,9 +14,9 @@ const routes = [
    component: ticketPage
  },
  {
-   path: '/query',
-   component: query
- },
+   path:'/result',
+   component: result,
+ }
 ]
 
 const router = new VueRouter({

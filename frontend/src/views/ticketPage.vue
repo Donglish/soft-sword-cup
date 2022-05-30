@@ -1,11 +1,12 @@
 <template>
   <div class="body">
       <div class="container">
+        <el-input v-model="passengerNum" placeholder="请输入乘客人数" style="width:150px;margin-top:30px;margin-left:50px"/>
         <el-scrollbar 
           style=
            "width:100%;
             height:440px;
-            margin-top:70px;
+            margin-top:8px;
             margin-bottom:10px;            
             "
         >      
@@ -56,6 +57,7 @@ export default {
   data(){
     return{
       num: 1,
+      passengerNum:"",
     }
   },
   components:{

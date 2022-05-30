@@ -650,6 +650,7 @@
         position: absolute;
         left: 15px;
         top: -15px;
+        background: url(//pic.c-ctrip.com/fltcommon/index/ico/input-liner.png);
       }
       .starting{
         position: absolute;
