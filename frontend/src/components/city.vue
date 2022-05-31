@@ -35,16 +35,6 @@
             @focus="handleLeftVisible"
           >
           <div class="area start-area" :style="{display: leftVisible?'block':'none'}" ref="startAreaRef">
-            <div class="area-selector">
-              <div class="tabs" ref="leftTabsRef" @click.stop>
-                <div class="tab-item active" @click="switchCityArea">
-                  国内
-                </div>
-                <div class="tab-item" @click="switchCityArea">
-                  国际及中国港澳台
-                </div>
-              </div>
-            </div>
             <div class="city-wrraper" @click.stop>
                 <el-tabs v-model="activeName" v-show="switchArea" style="margin-left:20px">
                     <el-tab-pane label="热门" name="热门">
@@ -111,16 +101,6 @@
             @focus="handleRightVisible"
            >
           <div class="area ending-area" :style="{display: rightVisible?'block':'none'}" ref="endingAreaRef">
-            <div class="area-selector">
-              <div class="tabs" ref="rightTabsRef" @click.stop>
-                <div class="tab-item active" @click="switchCityArea($event)">
-                  国内
-                </div>
-                <div class="tab-item" @click="switchCityArea($event)">
-                  国际及中国港澳台
-                </div>
-              </div>
-            </div>
             <div class="city-wrraper" @click.stop>
                 <el-tabs v-model="activeName" v-show="switchArea" style="margin-left:20px">
                     <el-tab-pane label="热门" name="热门">
@@ -224,12 +204,12 @@
             N: ['大同', '达州', '稻城', '丹东', '迪庆'],
           },
           'PQRSTUVW': {
-            P: ['阿泰勒', '阿克苏', '包头', '毕节', '北海', '北京'],
-            Q: ['巴中', '百色', '鞍山', '安庆', '安顺', '阿拉善左'],
-            R: ['昌都', '承德', '常德', '长春', '朝阳', '赤峰'],
-            S: ['大同', '达州', '稻城', '丹东', '迪庆', '敦煌'],
-            T: ['鄂尔多斯', '额济纳旗', '恩施', '二连浩特'],
-            U: ['福州', '阜阳', '抚远', '富蕴', '佛山'],
+            P: ['阿泰勒', '阿克苏', '包头', '毕节'],
+            Q: ['巴中', '百色', '鞍山', '安庆'],
+            R: ['昌都', '承德', '常德', '长春', '朝阳'],
+            S: ['大同', '达州', '稻城', '丹东', '迪庆'],
+            T: ['鄂尔多斯', '额济纳旗', '恩施'],
+            U: ['福州', '阜阳', '抚远', '富蕴'],
             V: ['昌都', '承德', '常德', '长春'],
             W: ['百色', '鞍山']
           },
@@ -286,8 +266,7 @@
           this.addInputBeforeClass(targetId)
         }
         // 在城市区域显示时,给文档添加点击隐藏事件
-        document.addEventListener('click', this.hideCityArea)
-        
+        document.addEventListener('click', this.hideCityArea)       
       },
       // 左边文本框聚焦显示城市区域
       handleLeftVisible() {
@@ -708,6 +687,8 @@
         vertical-align: top;
         font-size: 14px;
         font-weight: 600;
+        margin-right: 12px;
+        text-align: center;
       }
     }
     .city-group{
@@ -753,18 +734,6 @@
     // 取消input标签的默认选中状态样式
     outline: none;
   }
-  // 起点城市区域和终点区域共同样式
-  .area{
-    position: absolute;
-    top: 75px;
-    width: 736px;
-    // min-height: 200px;
-    background-color: #F4F4F4;
-    border: 1px solid gainsboro;
-    // width: 0px;
-    display: none;
-    z-index: 10;
-  }
   .search-area{
     position: absolute;
     top: 75px;
@@ -808,11 +777,11 @@
   }
   .search-area::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 5px rgba(204,204,204,0.8);
+    //-webkit-box-shadow: inset 0 0 5px rgba(204,204,204,0.8);
     background: #535353;
   }
   .search-area::-webkit-scrollbar-track {/*滚动条里面轨道*/
-    -webkit-box-shadow: inset 0 0 5px rgba(204,204,204,0.8);
+    //-webkit-box-shadow: inset 0 0 5px rgba(204,204,204,0.8);
     border-radius: 10px;
     background: #EDEDED;
   }
@@ -838,17 +807,17 @@
     }
   }
   .city-wrraper{
-    float: right;
-    position: relative;
     // position: absolute;
     // right: 0;
+    border-radius: 10px;
+    position: absolute;
+    top: 75px;
     width: 630px;
     min-height: 200px;
-    border-left: 1px solid gainsboro;
+    border: 1px solid gainsboro;
     box-sizing: border-box;
     background-color: white;
-    z-index: 10;
-
+    z-index: 11;
   }
   @keyframes beformMove {
     0%{

@@ -13,7 +13,7 @@
           <div style="font-size:30px;font-weight:600">
               {{this.information.timeInfo.start.startTime}}
           </div>
-          <div style="font-size:13px;text-align:center" >
+          <div style="font-size:13px;text-align:center;color: #999;" >
               {{this.information.timeInfo.start.startCity}}
           </div>
         </div>
@@ -24,7 +24,7 @@
            <div style="font-size:30px;font-weight:600">
               {{this.information.timeInfo.end.endTime}}
           </div>
-          <div style="font-size:13px;text-align:center"> 
+          <div style="font-size:13px;text-align:center;color: #999;"> 
               {{this.information.timeInfo.end.endCity}}
           </div>
         </div>
@@ -38,7 +38,7 @@
             {{this.information.price}}
            </div>
         </div>
-        <div style="font-size:13px;margin-top:-3px;margin-left:65px">
+        <div style="font-size:13px;margin-top:-3px;margin-left:65px;color: #999">
           价格
         </div>
       </div>

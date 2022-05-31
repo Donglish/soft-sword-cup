@@ -11,7 +11,7 @@
                     margin-left:10px;
                     margin-bottom:5px;"
                 >
-                    <h4 style="font-weight:200;margin-top:17px;margin-left:10px" @click="change" v-show="!showDate">
+                    <h4 style="font-weight:200;margin-top:17px;margin-left:10px;color: #999;" @click="change" v-show="!showDate">
                         出发日期
                     </h4>
                 </el-row>
