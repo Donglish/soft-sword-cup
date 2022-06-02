@@ -19,7 +19,8 @@
           <el-button 
               type="primary"  
               style=
-              " margin-left:3%;
+              " margin-left:5%;
+                margin-top:5px
               "
               icon="el-icon-plus"
               @click="num = num + 1"
@@ -46,17 +47,36 @@
                 z-index:10;
                 " 
               icon="el-icon-search"
-              @click="changeToResult()"
+              @click="visible = true"
             >
               搜索
             </el-button>
+            <el-dialog 
+              title="请输入要返回的最多航班方案数"
+              :visible.sync="visible"
+              width="30%"  
+            >
+              <span>
+                <el-input
+                  v-model="planeNum"
+                  style="margin-left:20%;width:250px"
+                  :before-close="handleClose"
+                  placeholder="请输入要返回的最多航班方案数"
+                >
+                </el-input>
+              </span>
+              <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="nextstep">确 定</el-button>
+                <el-button @click="visible = false">取 消</el-button>
+              </span>
+            </el-dialog>
         </div>         
         </el-collapse-transition>
         <el-collapse-transition>
           <div v-show="this.res" style="margin-top:10px;margin-left:30px">
             <el-button 
               type="primary" 
-              @click="changeToResult()" 
+              @click="query = !query;res = !res" 
               style="margin-left:30px;margin-top:10px"
               icon="el-icon-back"
               >
@@ -89,6 +109,10 @@ export default {
       passengerNum:"",
       query:true,
       res:false,
+      queryNum:"",
+      agent:"",
+      planeNum:"",
+      visible:false,
     }
   },
   components:{
@@ -96,10 +120,14 @@ export default {
     result
   },
   methods:{
-    changeToResult(){
+    nextstep(){
+      this.visible = false;
       this.query = !this.query,
       this.res = !this.res;
-    }
+    },  
+    handleClose(done){
+      done();
+    },
   }
 }
 </script>
