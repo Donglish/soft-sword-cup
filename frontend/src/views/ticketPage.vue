@@ -4,6 +4,21 @@
       <el-collapse-transition>
         <div  v-show="this.query">
           <el-input v-model="passengerNum" placeholder="请输入乘客人数" style="width:150px;margin-top:30px;margin-left:50px"/>
+          <el-select
+           v-model="selectAgent"
+           multiple
+           collapse-tags
+           placeholder="请选择合适的代理人"
+           style="margin-left:57%"
+          >
+            <el-option
+              v-for="item in agentList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
           <el-scrollbar 
             style=
             "width:100%;
@@ -70,7 +85,7 @@
                 <el-button @click="visible = false">取 消</el-button>
               </span>
             </el-dialog>
-        </div>         
+        </div>       
         </el-collapse-transition>
         <el-collapse-transition>
           <div v-show="this.res" style="margin-top:10px;margin-left:30px">
@@ -113,6 +128,89 @@ export default {
       agent:"",
       planeNum:"",
       visible:false,
+      agentList:[{
+        value: '1',
+        label:"携程",
+        },
+        {
+        value: '2',
+        label:"美团",
+        },
+        {
+        value: '3',
+        label: "滴滴",
+        },
+        {
+        value: '4',
+        label:"去哪儿",
+        },
+        {
+        value: '5',
+        label:"美亚",
+        },
+        {
+        value: '6',
+        label:"纵横天地",
+        },
+        {
+        value: '7',
+        label:"今日天下通",
+        },
+        {
+        value: '8',
+        label:"51BOOK",
+        },
+        {
+        value: '9',
+        label:"票盟",
+        },
+        {
+        value: '10',
+        label:"国航",
+        },
+        {
+        value: '11',
+        label:"南航",
+        },
+        {
+        value: '12',
+        label:"东航",
+        },
+        {
+        value: '13',
+        label:"海航",
+        },
+        {
+        value: '14',
+        label:"山航",
+        },
+        {
+        value: '15',
+        label:"上航",
+        },
+        {
+        value: '16',
+        label:"厦航",
+        },
+        {
+        value: '17',
+        label:"川航",
+        },
+        {
+        value: '18',
+        label:"幸福航空",
+        },
+        {
+        value: '19',
+        label:"吉祥航空",
+        },
+        {
+        value: '20',
+        label:"春秋航空"
+        },
+    ],
+      selectAgent:[],    
+      selectAll: false  
     }
   },
   components:{
