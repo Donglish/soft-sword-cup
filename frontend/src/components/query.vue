@@ -2,7 +2,7 @@
     <el-collapse-transition>
         <div v-show="showTotal">
             <div style="display:inline-block">
-               <city :id="id"></city>
+               <city :id="id" ref="city"></city>
             </div>
             <div class="dateContainer">
                 <el-row 
@@ -20,8 +20,7 @@
                         <el-date-picker
                             v-model="value1"
                             type="date"
-                            placeholder="选择日期"
-                        
+                            placeholder="选择日期"                       
                         >
                         </el-date-picker>
                     </div>
@@ -63,7 +62,7 @@ export default {
      return {
             value1:"",
             showDate:false,
-            showTotal:true
+            showTotal:true,
         }
     },
     components:{
@@ -73,6 +72,15 @@ export default {
         change(){
             this.showDate = !this.showDate;
         },
+        getFromCityAndToCity(){
+            let param = {
+                fromCity:"",
+                toCity:""
+            }
+            param.fromCity = this.$refs.city.defaultSearchValue;
+            param.toCity = this.$refs.city.defaultSearchValue2;
+            return param;
+        }
     },
     props:{
         id:{

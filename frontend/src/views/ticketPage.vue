@@ -2,7 +2,7 @@
   <div class="body">
     <div class="container">
       <el-collapse-transition>
-        <div  v-show="this.query">
+        <div v-show="this.query">
           <el-input v-model="passengerNum" placeholder="请输入乘客人数" style="width:150px;margin-top:30px;margin-left:50px"/>
           <el-select
            v-model="selectAgent"
@@ -28,7 +28,7 @@
               "
           >      
             <div v-for="(item,id) in num" :key="id">
-            <query :id="id+1"></query>
+            <query :id="id+1" ref="query"></query>
             </div>
           </el-scrollbar >
           <el-button 
@@ -219,6 +219,36 @@ export default {
   },
   methods:{
     nextstep(){
+      let ansList = {
+        passengerNum: "",
+        planeNum:"",
+        agentList:[],
+        planeList:[],
+      }
+      if(this.passengerNum != ""){
+        if(Number(this.passengerNum) > 0){
+          ansList.passengerNum = this.passengerNum
+        }
+      }else{
+         this.$alert('请输入乘客人数','错 误',{
+            confirmButtonText:'确定',
+          })
+      }
+      ansList.planeNum = this.planeNum;
+      ansList.agentList = this.selectAgent;
+      for(var i = 0 ;i<this.num;i++){
+        let tmp = {
+          date:"",
+          fromCityAndToCity:""
+        }
+        tmp.date = this.$refs.query[i].value1;
+        tmp.fromCityAndToCity = this.$refs.query[i].getFromCityAndToCity();
+        ansList.planeList.push(tmp);
+      }
+      console.log(ansList);
+      // this.axios.post("",).then((response) => {
+
+      // })
       this.visible = false;
       this.query = !this.query,
       this.res = !this.res;
