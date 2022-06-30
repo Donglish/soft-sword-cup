@@ -20,7 +20,8 @@
                         <el-date-picker
                             v-model="value1"
                             type="date"
-                            placeholder="选择日期"                       
+                            placeholder="选择日期"   
+                            :picker-options="pickerOptions"
                         >
                         </el-date-picker>
                     </div>
@@ -36,7 +37,7 @@
                     class = "delete"  
                     circle
                     type="text"
-                    @click="showTotal = false"
+                    @click="deleteItem()"
                 >
                     <i 
                     class="el-icon-close"
@@ -56,6 +57,7 @@
 </template>
 
 <script>
+//import bus from "../../utils/bus"
 import city from '@/components/city.vue'
 export default {
     data(){
@@ -63,12 +65,25 @@ export default {
             value1:"",
             showDate:false,
             showTotal:true,
+            pickerOptions: {
+            disabledDate(time) {
+                for(let i = 0 ;i < this.$parent.$refs.query.length;i++){
+                    console.log(this.$parent.$refs.query[i]);
+                }
+                return false;
+            },
+          }
         }
     },
     components:{
         city
     },
+
     methods:{
+        deleteItem(){
+            this.showTotal = false;
+            this.$emit('increment',-1);
+        },
         change(){
             this.showDate = !this.showDate;
         },
@@ -80,7 +95,8 @@ export default {
             param.fromCity = this.$refs.city.defaultSearchValue;
             param.toCity = this.$refs.city.defaultSearchValue2;
             return param;
-        }
+        },
+
     },
     props:{
         id:{

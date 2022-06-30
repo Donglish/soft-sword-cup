@@ -28,7 +28,7 @@
               "
           >      
             <div v-for="(item,id) in num" :key="id">
-            <query :id="id+1" ref="query"></query>
+            <query :id="id+1" ref="query" v-on:increment="changeNum"></query>
             </div>
           </el-scrollbar >
           <el-button 
@@ -218,6 +218,10 @@ export default {
     result
   },
   methods:{
+    changeNum(val){
+      this.num += val;
+      console.log(this.num);
+    },
     nextstep(){
       let ansList = {
         passengerNum: "",
