@@ -220,7 +220,6 @@ export default {
   methods:{
     changeNum(val){
       this.num += val;
-      console.log(this.num);
     },
     nextstep(){
       let ansList = {

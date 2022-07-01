@@ -21,7 +21,7 @@
                             v-model="value1"
                             type="date"
                             placeholder="选择日期"   
-                            :picker-options="pickerOptions"
+                            :disabled-date="this.disabledDate"
                         >
                         </el-date-picker>
                     </div>
@@ -57,7 +57,6 @@
 </template>
 
 <script>
-//import bus from "../../utils/bus"
 import city from '@/components/city.vue'
 export default {
     data(){
@@ -65,23 +64,20 @@ export default {
             value1:"",
             showDate:false,
             showTotal:true,
-            pickerOptions: {
-            disabledDate(time) {
-                for(let i = 0 ;i < this.$parent.$refs.query.length;i++){
-                    console.log(this.$parent.$refs.query[i]);
-                }
-                return false;
-            },
-          }
+            thisId:"",
         }
     },
     components:{
         city
     },
-
+    mounted(){
+        this.thisId = this.id;
+    },
     methods:{
         deleteItem(){
             this.showTotal = false;
+            console.log(this.id);
+            console.log(this.$store.state.date);
             this.$emit('increment',-1);
         },
         change(){
@@ -96,12 +92,26 @@ export default {
             param.toCity = this.$refs.city.defaultSearchValue2;
             return param;
         },
-
+        disabledDate(time) {
+            console.log(this.$store);
+            if(this.$store.state.date === ""){
+                return true;
+            }
+            return time.getTime() < this.$store.state.date.getTime();
+        },
     },
     props:{
         id:{
             type:Number,
             required:true
+        }
+    },
+    watch:{
+        value1:{
+            handler(val,oldVal){
+                this.$store.commit('changeDate',val);
+                //console.log(this.$store.state.date);
+            }
         }
     }
 }
