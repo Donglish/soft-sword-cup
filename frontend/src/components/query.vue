@@ -64,7 +64,6 @@ export default {
             value1:"",
             showDate:false,
             showTotal:true,
-            thisId:"",
         }
     },
     components:{
@@ -75,23 +74,18 @@ export default {
             var that = this;
             return {
                 disabledDate(time) {
-                    console.log(that.$store);
-                    if(that.$store.state.date === ""){
+                    if(that.$store.state.date.length === 0){
                         return false;
                     }
-                    return time.getTime() < that.$store.state.date.getTime();
+                    return time.getTime() < that.$store.state.date[that.$store.state.date.length-1].getTime();
                 },
             }
         }
     },
-    mounted(){
-        this.thisId = this.id;
-    },
     methods:{
         deleteItem(){
             this.showTotal = false;
-            console.log(this.id);
-            console.log(this.$store.state.date);
+            this.$store.commit('deleteDate');
             this.$emit('increment',-1);
         },
         change(){

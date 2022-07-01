@@ -219,12 +219,19 @@ export default {
   },
   methods:{
     addAnother(){
-      if(this.$refs.query[num-1].value1 === ""){
-        this.$alert('请输入前组行程的日期','错 误',{
-            confirmButtonText:'确定',
+      if(this.num < 8){
+          if(this.$refs.query[this.num-1].value1 === ""){
+          this.$alert('请输入前组行程的日期','错 误',{
+              confirmButtonText:'确定',
+          })
+          }else{
+            this.num = this.num + 1;
+          }
+      }
+      else{
+        this.$alert('最大支持输入八组行程','错误',{
+          confirmButtonText:'确定',
         })
-      }else{
-      num = num + 1;
       }
     },
     changeNum(val){
