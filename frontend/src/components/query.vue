@@ -21,7 +21,7 @@
                             v-model="value1"
                             type="date"
                             placeholder="选择日期"   
-                            :disabled-date="this.disabledDate"
+                            :picker-options="pickerOptions"
                         >
                         </el-date-picker>
                     </div>
@@ -70,6 +70,20 @@ export default {
     components:{
         city
     },
+    computed:{
+        pickerOptions(){
+            var that = this;
+            return {
+                disabledDate(time) {
+                    console.log(that.$store);
+                    if(that.$store.state.date === ""){
+                        return false;
+                    }
+                    return time.getTime() < that.$store.state.date.getTime();
+                },
+            }
+        }
+    },
     mounted(){
         this.thisId = this.id;
     },
@@ -92,13 +106,6 @@ export default {
             param.toCity = this.$refs.city.defaultSearchValue2;
             return param;
         },
-        disabledDate(time) {
-            console.log(this.$store);
-            if(this.$store.state.date === ""){
-                return true;
-            }
-            return time.getTime() < this.$store.state.date.getTime();
-        },
     },
     props:{
         id:{
@@ -110,7 +117,6 @@ export default {
         value1:{
             handler(val,oldVal){
                 this.$store.commit('changeDate',val);
-                //console.log(this.$store.state.date);
             }
         }
     }

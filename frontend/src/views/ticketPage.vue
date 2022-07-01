@@ -38,7 +38,7 @@
                 margin-top:5px
               "
               icon="el-icon-plus"
-              @click="num = num + 1"
+              @click="addAnother()"
             >
               再加一程
             </el-button>
@@ -218,6 +218,15 @@ export default {
     result
   },
   methods:{
+    addAnother(){
+      if(this.$refs.query[num-1].value1 === ""){
+        this.$alert('请输入前组行程的日期','错 误',{
+            confirmButtonText:'确定',
+        })
+      }else{
+      num = num + 1;
+      }
+    },
     changeNum(val){
       this.num += val;
     },
@@ -249,9 +258,9 @@ export default {
         ansList.planeList.push(tmp);
       }
       console.log(ansList);
-      // this.axios.post("",).then((response) => {
-
-      // })
+      this.axios.post("/api",...ansList).then((response) => {
+        console.log(response);
+      })
       this.visible = false;
       this.query = !this.query,
       this.res = !this.res;
