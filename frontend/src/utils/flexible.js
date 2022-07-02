@@ -1,5 +1,5 @@
 ;
-(function (win, lib) {
+(function(win, lib) {
     var doc = win.document;
     var docEl = doc.documentElement;
     var metaEl = doc.querySelector('meta[name="viewport"]');
@@ -8,7 +8,7 @@
     var scale = 0;
     var tid;
     var flexible = lib.flexible || (lib.flexible = {});
-
+ 
     if (metaEl) {
         console.warn('将根据已有的meta标签来设置缩放比例');
         var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
@@ -31,7 +31,7 @@
             }
         }
     }
-
+ 
     if (!dpr && !scale) {
         var isAndroid = win.navigator.appVersion.match(/android/gi);
         var isIPhone = win.navigator.appVersion.match(/iphone/gi);
@@ -51,7 +51,7 @@
         }
         scale = 1 / dpr;
     }
-
+ 
     docEl.setAttribute('data-dpr', dpr);
     if (!metaEl) {
         metaEl = doc.createElement('meta');
@@ -65,7 +65,7 @@
             doc.write(wrap.innerHTML);
         }
     }
-
+ 
     function refreshRem() {
         var width = docEl.getBoundingClientRect().width;
         if (width / dpr > 540) {
@@ -75,44 +75,44 @@
         docEl.style.fontSize = rem + 'px';
         flexible.rem = win.rem = rem;
     }
-
-    win.addEventListener('resize', function () {
+ 
+    win.addEventListener('resize', function() {
         clearTimeout(tid);
         tid = setTimeout(refreshRem, 300);
     }, false);
-    win.addEventListener('pageshow', function (e) {
+    win.addEventListener('pageshow', function(e) {
         if (e.persisted) {
             clearTimeout(tid);
             tid = setTimeout(refreshRem, 300);
         }
     }, false);
-
+ 
     if (doc.readyState === 'complete') {
         doc.body.style.fontSize = 12 * dpr + 'px';
     } else {
-        doc.addEventListener('DOMContentLoaded', function (e) {
+        doc.addEventListener('DOMContentLoaded', function(e) {
             doc.body.style.fontSize = 12 * dpr + 'px';
         }, false);
     }
-
-
+ 
+ 
     refreshRem();
-
+ 
     flexible.dpr = win.dpr = dpr;
     flexible.refreshRem = refreshRem;
-    flexible.rem2px = function (d) {
+    flexible.rem2px = function(d) {
         var val = parseFloat(d) * this.rem;
         if (typeof d === 'string' && d.match(/rem$/)) {
             val += 'px';
         }
         return val;
     }
-    flexible.px2rem = function (d) {
+    flexible.px2rem = function(d) {
         var val = parseFloat(d) / this.rem;
         if (typeof d === 'string' && d.match(/px$/)) {
             val += 'rem';
         }
         return val;
     }
-
+ 
 })(window, window['lib'] || (window['lib'] = {}));
