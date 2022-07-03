@@ -8,6 +8,7 @@ import store from './store/index'
 // import 'lib-flexible'
 // import './utils/flexible'
 Vue.prototype.axios = axios
+// axios.defaults.baseURL = '/api'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 

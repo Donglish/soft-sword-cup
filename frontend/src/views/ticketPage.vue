@@ -105,7 +105,15 @@
               "
             >    
              <div v-for="(item,id) in num" :key="id">
-              <result></result>
+              <result :companyName="returnList[id].companyName"
+                      :planeType="returnList[id].planeType"
+                      :startTime="returnList[id].startTime"
+                      :startCity="returnList[id].startCity"
+                      :endTime="returnList[id].endTime"
+                      :endCity="returnList[id].endCity"
+                      :price="returnList[id].price"
+                      :ticketType="returnList[id].ticketType"
+              ></result>
             </div>
             </el-scrollbar>
           </div>      
@@ -208,9 +216,21 @@ export default {
         value: '20',
         label:"春秋航空"
         },
-    ],
+      ],
       selectAgent:[],    
-      selectAll: false  
+      selectAll: false,
+      returnList:[
+          { 
+          companyName:"南方航空",
+          planeType:"CZ3825 波音737(中)",
+          startTime:"20:40",
+          startCity:"长沙",
+          endTime:"22:40",
+          endCity:"南京",
+          price:"1000",
+          ticketType:"经济舱"
+          }
+          ],
     }
   },
   components:{
@@ -225,6 +245,17 @@ export default {
               confirmButtonText:'确定',
           })
           }else{
+            let param = { 
+            companyName:"",
+            planeType:"",
+            startTime:"",
+            startCity:"",
+            endTime:"",
+            endCity:"",
+            price:"",
+            ticketType:""
+            };
+            this.returnList.push(param);
             this.num = this.num + 1;
           }
       }
@@ -264,9 +295,11 @@ export default {
         tmp.fromCityAndToCity = this.$refs.query[i].getFromCityAndToCity();
         ansList.planeList.push(tmp);
       }
-      console.log(ansList);
-      this.axios.post("/api",...ansList).then((response) => {
+    //  console.log(ansList);
+    let that = this;
+      this.axios.post("http://localhost:8080/api/backend",{...ansList}).then((response) => {
         console.log(response);
+        that.returnList = response.data;
       })
       this.visible = false;
       this.query = !this.query,

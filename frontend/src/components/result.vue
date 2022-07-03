@@ -2,30 +2,33 @@
   <div class="result">
       <div class="airCompany">
           <div style="margin-top:5px">
-            {{this.information.planeInfo.companyName}}
+            {{this.companyName}}
           </div>
           <div style="margin-top:6px;color:#409EFF;font-size:13px">
-            {{this.information.planeInfo.planeType}}
+            {{this.planeType}}
           </div>
       </div>
       <div class="timeInfo">
         <div style="display:inline-block">
           <div style="font-size:30px;font-weight:600">
-              {{this.information.timeInfo.start.startTime}}
+              {{this.startTime}}
           </div>
           <div style="font-size:13px;text-align:center;color: #999;" >
-              {{this.information.timeInfo.start.startCity}}
+              {{this.startCity}}
           </div>
         </div>
         <div style="display:inline-block;margin-left:10px;">
+          <div style="margin-left:40px;color: #409EFF">
+            {{this.ticketType}}
+          </div>
           <img src="../assets/arrow1.png" alt="" style="width:150px;height:20px">
         </div>
         <div style="display:inline-block;margin-left:10px;margin-top:10px">
            <div style="font-size:30px;font-weight:600">
-              {{this.information.timeInfo.end.endTime}}
+              {{this.endTime}}
           </div>
           <div style="font-size:13px;text-align:center;color: #999;"> 
-              {{this.information.timeInfo.end.endCity}}
+              {{this.endCity}}
           </div>
         </div>
       </div>
@@ -35,7 +38,7 @@
             ￥
           </div>
            <div style="display:inline-block;font-size:35px;font-weight:500">
-            {{this.information.price}}
+            {{this.price}}
            </div>
         </div>
         <div style="font-size:13px;margin-top:-3px;margin-left:65px;color: #999">
@@ -49,23 +52,32 @@
 export default {
     data(){
       return{
-        information:{
-          planeInfo:{
-            companyName:"南方航空",
-            planeType:"CZ3825 波音737(中)"
-          },
-          timeInfo:{
-            start:{
-              startTime:"20:40",
-              startCity:"长沙"
-            },
-            end:{
-              endTime:"22:40",
-              endCity:"南京"
-            }
-          },
-          price:"1000",
-        }
+      }
+    },
+    props:{
+      companyName:{
+        type:String,
+      },
+      planeType:{
+        type:String,
+      },
+      startTime:{
+        type:String,
+      },
+      startCity:{
+        type:String,
+      },
+      endTime:{
+        type:String,
+      },
+      endCity:{
+        type:String,
+      },
+      price:{
+        type:String,
+      },
+      ticketType:{
+        type:String,
       }
     }
 }

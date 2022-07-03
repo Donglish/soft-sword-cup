@@ -4,8 +4,11 @@ module.exports = {
     open: true,
     proxy:{
       '/api':{
-        target:'http://localhost:8081',
-        changeOrigin:true
+        target:'http://120.24.85.165:8999/',
+        changeOrigin:true,
+        pathRewrite:{
+          '^/api':''
+        }
       }
     }
   },
