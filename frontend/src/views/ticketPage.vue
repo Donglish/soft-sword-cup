@@ -74,7 +74,7 @@
               <span>
                 <el-input
                   v-model="planeNum"
-                  style="margin-left:20%;width:250px"
+                  style="margin-left:20%;margin:top:20%;width:250px"
                   :before-close="handleClose"
                   placeholder="请输入要返回的最多航班方案数"
                 >
@@ -104,17 +104,15 @@
                 margin-top:10px      
               "
             >    
-             <div v-for="(item,id) in num" :key="id">
-              <result :companyName="returnList[id].companyName"
-                      :planeType="returnList[id].planeType"
-                      :startTime="returnList[id].startTime"
-                      :startCity="returnList[id].startCity"
-                      :endTime="returnList[id].endTime"
-                      :endCity="returnList[id].endCity"
-                      :price="returnList[id].price"
-                      :ticketType="returnList[id].ticketType"
-              ></result>
-            </div>
+             <div v-for="(item,id) in returnList" :key="id" :style="{height:scrollHeight,backgroundColor:'#f2f6fc',borderRadius:'8px',marginTop:'10px',width:'96%'}" ref="change">
+                <div style="padding-top:10px;margin-left:48%;font-size:20px;color:#999">方案{{id+1}}</div>
+                <result v-for="(item1,id1) in item.part" :key="id1"
+                      :planeInfo="item1.planeInfo"
+                      :timeInfo="item1.timeInfo"
+                      :cabin="item1.cabin"
+                      :partPrice="item1.partPrice"
+                ></result>
+             </div>             
             </el-scrollbar>
           </div>      
       </el-collapse-transition>
@@ -128,7 +126,10 @@ import result from '@/components/result.vue'
 export default {
   data(){
     return{
-      num: 1,
+      bgc:"",
+      wid:"96%",
+      num: 2,
+      programNum:2,
       passengerNum:"",
       query:true,
       res:false,
@@ -138,97 +139,221 @@ export default {
       visible:false,
       agentList:[{
         value: '1',
-        label:"携程",
+        label:"HKG001",
         },
         {
         value: '2',
-        label:"美团",
+        label:"BJS001",
         },
         {
         value: '3',
-        label: "滴滴",
+        label: "TSN001",
         },
         {
         value: '4',
-        label:"去哪儿",
+        label:"SHA001",
         },
         {
         value: '5',
-        label:"美亚",
+        label:"CAN001",
         },
         {
         value: '6',
-        label:"纵横天地",
+        label:"SZX001",
         },
         {
         value: '7',
-        label:"今日天下通",
+        label:"NKG001",
         },
         {
         value: '8',
-        label:"51BOOK",
+        label:"CTU001",
         },
         {
         value: '9',
-        label:"票盟",
+        label:"CKG001",
         },
         {
         value: '10',
-        label:"国航",
+        label:"KMG001",
         },
         {
         value: '11',
-        label:"南航",
+        label:"HGH001",
         },
         {
         value: '12',
-        label:"东航",
+        label:"XIY001",
         },
         {
         value: '13',
-        label:"海航",
+        label:"WUH001",
         },
         {
         value: '14',
-        label:"山航",
+        label:"CGO001",
         },
         {
         value: '15',
-        label:"上航",
+        label:"CGQ001",
         },
         {
         value: '16',
-        label:"厦航",
+        label:"CSX001",
         },
         {
         value: '17',
-        label:"川航",
+        label:"TYN001",
         },
         {
         value: '18',
-        label:"幸福航空",
+        label:"DLC001",
         },
         {
         value: '19',
-        label:"吉祥航空",
+        label:"FOC001",
         },
         {
         value: '20',
-        label:"春秋航空"
+        label:"XMN001"
         },
       ],
       selectAgent:[],    
       selectAll: false,
       returnList:[
           { 
-          companyName:"南方航空",
-          planeType:"CZ3825 波音737(中)",
-          startTime:"20:40",
-          startCity:"长沙",
-          endTime:"22:40",
-          endCity:"南京",
-          price:"1000",
-          ticketType:"经济舱"
+           part:[
+             {
+               dateInfo:"202",
+               planeInfo:{
+                 companyName:"国航",
+                 planeType:"0100"
+                },
+                timeInfo:{
+                  start:{
+                    startDate:"2022年7月5日",
+                    startTime:"20:20",
+                    startCity:"长沙"
+                  },
+                  end:{
+                    endDate:"2022年7月6日",
+                    endTime:"10:20",
+                    endCity:"南京"
+                  }
+                },
+                cabin:[
+                  {
+                    cabinType:"经济舱",
+                    num:"3",
+                    singlePrice:"230"
+                  },
+                  {
+                    cabinType:"商务舱",
+                    num:"2",
+                    singlePrice:"140"
+                  }
+                ],
+                partPrice:"5000"
+             },
+             {
+               planeInfo:{
+                 companyName:"国航",
+                 planeType:"0100"
+                },
+                timeInfo:{
+                  start:{
+                    startDate:"2022年7月5日",
+                    startTime:"20:20",
+                    startCity:"长沙"
+                  },
+                  end:{
+                    endDate:"2022年7月6日",
+                    endTime:"10:20",
+                    endCity:"南京"
+                  }
+                },
+                cabin:[
+                  {
+                    cabinType:"经济舱",
+                    num:"3",
+                    singlePrice:"230"
+                  },
+                  {
+                    cabinType:"商务舱",
+                    num:"2",
+                    singlePrice:"140"
+                  }
+                ],
+                partPrice:"4000"
+             },
+           ],
+          },
+          { 
+           part:[
+             {
+               dateInfo:"202",
+               planeInfo:{
+                 companyName:"国航",
+                 planeType:"0100"
+                },
+                timeInfo:{
+                  start:{
+                    startDate:"2022年7月5日",
+                    startTime:"20:20",
+                    startCity:"长沙"
+                  },
+                  end:{
+                    endDate:"2022年7月6日",
+                    endTime:"10:20",
+                    endCity:"南京"
+                  }
+                },
+                cabin:[
+                  {
+                    cabinType:"经济舱",
+                    num:"3",
+                    singlePrice:"230"
+                  },
+                  {
+                    cabinType:"商务舱",
+                    num:"2",
+                    singlePrice:"140"
+                  }
+                ],
+                partPrice:"5000"
+             },
+             {
+               planeInfo:{
+                 companyName:"国航",
+                 planeType:"0100"
+                },
+                timeInfo:{
+                  start:{
+                    startDate:"2022年7月5日",
+                    startTime:"20:20",
+                    startCity:"长沙"
+                  },
+                  end:{
+                    endDate:"2022年7月6日",
+                    endTime:"10:20",
+                    endCity:"南京"
+                  }
+                },
+                cabin:[
+                  {
+                    cabinType:"经济舱",
+                    num:"3",
+                    singlePrice:"230"
+                  },
+                  {
+                    cabinType:"商务舱",
+                    num:"2",
+                    singlePrice:"140"
+                  }
+                ],
+                partPrice:"4000"
+             },
+           ],
           }
           ],
     }
@@ -237,9 +362,23 @@ export default {
     query,
     result
   },
+  watch:{
+    num:{
+       handler(val,oldVal){
+              if(val === 1){
+                this.$store.state.date = []
+              }
+            }
+    }
+  },
+  computed:{
+    scrollHeight(){
+      return this.num*100 + 75 + 'px'
+    }
+  },
   methods:{
     addAnother(){
-      if(this.num < 8){
+      if(this.num < 8 && this.num > 0){
           if(this.$refs.query[this.num-1].value1 === ""){
           this.$alert('请输入前组行程的日期','错 误',{
               confirmButtonText:'确定',
@@ -258,6 +397,9 @@ export default {
             this.returnList.push(param);
             this.num = this.num + 1;
           }
+      }
+      else if(this.num === 0 ){
+        this.num = this.num + 1;
       }
       else{
         this.$alert('最大支持输入八组行程','错误',{
@@ -296,7 +438,8 @@ export default {
         ansList.planeList.push(tmp);
       }
     //  console.log(ansList);
-    let that = this;
+    this.$store.state.date = [];
+    let that = this;     
       this.axios.post("http://localhost:8080/api/backend",{...ansList}).then((response) => {
         console.log(response);
         that.returnList = response.data;

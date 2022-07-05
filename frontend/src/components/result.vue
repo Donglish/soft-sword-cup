@@ -1,34 +1,41 @@
 <template>
   <div class="result">
       <div class="airCompany">
-          <div style="margin-top:5px">
-            {{this.companyName}}
+          <div style="margin-top:5px;font-size:20px">
+            {{this.planeInfo.companyName}}
           </div>
-          <div style="margin-top:6px;color:#409EFF;font-size:13px">
-            {{this.planeType}}
+          <div style="margin-top:6px;color:#409EFF;font-size:17px">
+            {{this.planeInfo.planeType}}
           </div>
       </div>
       <div class="timeInfo">
         <div style="display:inline-block">
-          <div style="font-size:30px;font-weight:600">
-              {{this.startTime}}
+          <div style="font-size:13px;color:#999;text-align:center">
+              {{this.timeInfo.start.startDate}}
           </div>
-          <div style="font-size:13px;text-align:center;color: #999;" >
-              {{this.startCity}}
+          <div style="font-size:25px;font-weight:600;text-align:center">
+              {{this.timeInfo.start.startTime}}
+          </div>
+          <div style="font-size:13px;text-align:center;color:#999" >
+              {{this.timeInfo.start.startCity}}
           </div>
         </div>
         <div style="display:inline-block;margin-left:10px;">
-          <div style="margin-left:40px;color: #409EFF">
-            {{this.ticketType}}
+          <div style="margin-left:10px;color: #409EFF;font-size:10px;">
+            {{this.cabin[0].cabinType}}*{{this.cabin[0].num}}
+            {{this.cabin[1].cabinType}}*{{this.cabin[1].num}}
           </div>
           <img src="../assets/arrow1.png" alt="" style="width:150px;height:20px">
         </div>
         <div style="display:inline-block;margin-left:10px;margin-top:10px">
-           <div style="font-size:30px;font-weight:600">
-              {{this.endTime}}
+           <div style="font-size:13px;color:#999;text-align:center">
+              {{this.timeInfo.end.endDate}}
+           </div>
+           <div style="font-size:25px;font-weight:600;text-align:center">
+              {{this.timeInfo.end.endTime}}
           </div>
-          <div style="font-size:13px;text-align:center;color: #999;"> 
-              {{this.endCity}}
+          <div style="font-size:13px;text-align:center;color:#999;"> 
+              {{this.timeInfo.end.endCity}}
           </div>
         </div>
       </div>
@@ -38,7 +45,7 @@
             ￥
           </div>
            <div style="display:inline-block;font-size:35px;font-weight:500">
-            {{this.price}}
+            {{this.partPrice}}
            </div>
         </div>
         <div style="font-size:13px;margin-top:-3px;margin-left:65px;color: #999">
@@ -55,29 +62,17 @@ export default {
       }
     },
     props:{
-      companyName:{
-        type:String,
+      planeInfo:{
+        required:true
       },
-      planeType:{
-        type:String,
+      timeInfo:{
+        required:true
       },
-      startTime:{
-        type:String,
+      cabin:{
+        required:true
       },
-      startCity:{
-        type:String,
-      },
-      endTime:{
-        type:String,
-      },
-      endCity:{
-        type:String,
-      },
-      price:{
-        type:String,
-      },
-      ticketType:{
-        type:String,
+      partPrice:{
+        required:true
       }
     }
 }
@@ -88,11 +83,11 @@ export default {
     margin-left: 50px;
     background-color: white;
     border: 1px solid gainsboro;
-    height: 85px;
+    height: 95px;
     width: 900px;
     position: relative;
     box-shadow: 0 0 12px 0 rgb(0 0 0 / 6%);
-    margin-bottom: 10px;
+    margin-top: 10px;
   }
   .result:hover{
     box-shadow: 0 0 15px 0 rgb(0 0 0 / 15%);
