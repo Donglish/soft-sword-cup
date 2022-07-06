@@ -3,7 +3,11 @@
     <div class="container">
       <el-collapse-transition>
         <div v-show="this.query">
-          <el-input v-model="passengerNum" placeholder="请输入乘客人数" style="width:150px;margin-top:30px;margin-left:50px"/>
+          <el-input 
+            v-model="passengerNum" 
+            placeholder="请输入乘客人数" 
+            style="width:150px;margin-top:30px;margin-left:50px"
+          />
           <el-select
            v-model="selectAgent"
            multiple
@@ -70,11 +74,12 @@
               title="请输入要返回的最多航班方案数"
               :visible.sync="visible"
               width="30%"  
+              style="margin-top:10%"
             >
               <span>
                 <el-input
                   v-model="planeNum"
-                  style="margin-left:20%;margin:top:20%;width:250px"
+                  style="margin-left:20%;margin-top:3%;width:250px"
                   :before-close="handleClose"
                   placeholder="请输入要返回的最多航班方案数"
                 >
@@ -104,7 +109,10 @@
                 margin-top:10px      
               "
             >    
-             <div v-for="(item,id) in returnList" :key="id" :style="{height:scrollHeight,backgroundColor:'#f2f6fc',borderRadius:'8px',marginTop:'10px',width:'96%'}" ref="change">
+             <div v-for="(item,id) in returnList" 
+                  :key="id" 
+                  :style="{height:scrollHeight,backgroundColor:'#f2f6fc',borderRadius:'8px',marginTop:'10px',width:'96%'}" 
+                  >
                 <div style="padding-top:10px;margin-left:48%;font-size:20px;color:#999">方案{{id+1}}</div>
                 <result v-for="(item1,id1) in item.part" :key="id1"
                       :planeInfo="item1.planeInfo"
@@ -119,16 +127,17 @@
       </div>
   </div>
 </template>
-
 <script>
 import query from '@/components/query.vue'
 import result from '@/components/result.vue'
+import {pageMixins} from '@/mixins/pageMixins'
 export default {
+  mixins:[pageMixins],
   data(){
     return{
       bgc:"",
       wid:"96%",
-      num: 2,
+      num: 1,
       programNum:2,
       passengerNum:"",
       query:true,
@@ -138,83 +147,83 @@ export default {
       planeNum:"",
       visible:false,
       agentList:[{
-        value: '1',
+        value: 'HKG001',
         label:"HKG001",
         },
         {
-        value: '2',
+        value: 'BJS001',
         label:"BJS001",
         },
         {
-        value: '3',
+        value: 'TSN001',
         label: "TSN001",
         },
         {
-        value: '4',
+        value: 'SHA001',
         label:"SHA001",
         },
         {
-        value: '5',
+        value: 'CAN001',
         label:"CAN001",
         },
         {
-        value: '6',
+        value: 'SZX001',
         label:"SZX001",
         },
         {
-        value: '7',
+        value: 'NKG001',
         label:"NKG001",
         },
         {
-        value: '8',
+        value: 'CTU001',
         label:"CTU001",
         },
         {
-        value: '9',
+        value: 'CKG001',
         label:"CKG001",
         },
         {
-        value: '10',
+        value: 'KMG001',
         label:"KMG001",
         },
         {
-        value: '11',
+        value: 'HGH001',
         label:"HGH001",
         },
         {
-        value: '12',
+        value: 'XIY001',
         label:"XIY001",
         },
         {
-        value: '13',
+        value: 'WUH001',
         label:"WUH001",
         },
         {
-        value: '14',
+        value: 'CGO001',
         label:"CGO001",
         },
         {
-        value: '15',
+        value: 'CGQ001',
         label:"CGQ001",
         },
         {
-        value: '16',
+        value: 'CSX001',
         label:"CSX001",
         },
         {
-        value: '17',
+        value: 'TYN001',
         label:"TYN001",
         },
         {
-        value: '18',
+        value: 'DLC001',
         label:"DLC001",
         },
         {
-        value: '19',
+        value: 'FOC001',
         label:"FOC001",
         },
         {
-        value: '20',
+        value: 'XMN001',
         label:"XMN001"
         },
       ],
@@ -224,7 +233,6 @@ export default {
           { 
            part:[
              {
-               dateInfo:"202",
                planeInfo:{
                  companyName:"国航",
                  planeType:"0100"
@@ -236,39 +244,8 @@ export default {
                     startCity:"长沙"
                   },
                   end:{
-                    endDate:"2022年7月6日",
-                    endTime:"10:20",
-                    endCity:"南京"
-                  }
-                },
-                cabin:[
-                  {
-                    cabinType:"经济舱",
-                    num:"3",
-                    singlePrice:"230"
-                  },
-                  {
-                    cabinType:"商务舱",
-                    num:"2",
-                    singlePrice:"140"
-                  }
-                ],
-                partPrice:"5000"
-             },
-             {
-               planeInfo:{
-                 companyName:"国航",
-                 planeType:"0100"
-                },
-                timeInfo:{
-                  start:{
-                    startDate:"2022年7月5日",
-                    startTime:"20:20",
-                    startCity:"长沙"
-                  },
-                  end:{
-                    endDate:"2022年7月6日",
-                    endTime:"10:20",
+                    endDate:"2022年7月5日",
+                    endTime:"23:20",
                     endCity:"南京"
                   }
                 },
@@ -285,26 +262,56 @@ export default {
                   }
                 ],
                 partPrice:"4000"
+             },
+             {
+               planeInfo:{
+                 companyName:"南航",
+                 planeType:"0101"
+                },
+                timeInfo:{
+                  start:{
+                    startDate:"2022年7月6日",
+                    startTime:"11:30",
+                    startCity:"南京"
+                  },
+                  end:{
+                    endDate:"2022年7月6日",
+                    endTime:"17:20",
+                    endCity:"北京"
+                  }
+                },
+                cabin:[
+                  {
+                    cabinType:"经济舱",
+                    num:"3",
+                    singlePrice:"230"
+                  },
+                  {
+                    cabinType:"商务舱",
+                    num:"2",
+                    singlePrice:"140"
+                  }
+                ],
+                partPrice:"5000"
              },
            ],
           },
           { 
            part:[
              {
-               dateInfo:"202",
                planeInfo:{
-                 companyName:"国航",
-                 planeType:"0100"
+                 companyName:"东航",
+                 planeType:"0110"
                 },
                 timeInfo:{
                   start:{
                     startDate:"2022年7月5日",
-                    startTime:"20:20",
+                    startTime:"9:20",
                     startCity:"长沙"
                   },
                   end:{
-                    endDate:"2022年7月6日",
-                    endTime:"10:20",
+                    endDate:"2022年7月5日",
+                    endTime:"12:20",
                     endCity:"南京"
                   }
                 },
@@ -320,23 +327,23 @@ export default {
                     singlePrice:"140"
                   }
                 ],
-                partPrice:"5000"
+                partPrice:"3900"
              },
              {
                planeInfo:{
-                 companyName:"国航",
-                 planeType:"0100"
+                 companyName:"川航",
+                 planeType:"0131"
                 },
                 timeInfo:{
                   start:{
-                    startDate:"2022年7月5日",
-                    startTime:"20:20",
-                    startCity:"长沙"
+                    startDate:"2022年7月6日",
+                    startTime:"10:20",
+                    startCity:"南京"
                   },
                   end:{
                     endDate:"2022年7月6日",
-                    endTime:"10:20",
-                    endCity:"南京"
+                    endTime:"15:50",
+                    endCity:"北京"
                   }
                 },
                 cabin:[
@@ -351,7 +358,7 @@ export default {
                     singlePrice:"140"
                   }
                 ],
-                partPrice:"4000"
+                partPrice:"5200"
              },
            ],
           }
@@ -362,96 +369,6 @@ export default {
     query,
     result
   },
-  watch:{
-    num:{
-       handler(val,oldVal){
-              if(val === 1){
-                this.$store.state.date = []
-              }
-            }
-    }
-  },
-  computed:{
-    scrollHeight(){
-      return this.num*100 + 75 + 'px'
-    }
-  },
-  methods:{
-    addAnother(){
-      if(this.num < 8 && this.num > 0){
-          if(this.$refs.query[this.num-1].value1 === ""){
-          this.$alert('请输入前组行程的日期','错 误',{
-              confirmButtonText:'确定',
-          })
-          }else{
-            let param = { 
-            companyName:"",
-            planeType:"",
-            startTime:"",
-            startCity:"",
-            endTime:"",
-            endCity:"",
-            price:"",
-            ticketType:""
-            };
-            this.returnList.push(param);
-            this.num = this.num + 1;
-          }
-      }
-      else if(this.num === 0 ){
-        this.num = this.num + 1;
-      }
-      else{
-        this.$alert('最大支持输入八组行程','错误',{
-          confirmButtonText:'确定',
-        })
-      }
-    },
-    changeNum(val){
-      this.num += val;
-    },
-    nextstep(){
-      let ansList = {
-        passengerNum: "",
-        planeNum:"",
-        agentList:[],
-        planeList:[],
-      }
-      if(this.passengerNum != ""){
-        if(Number(this.passengerNum) > 0){
-          ansList.passengerNum = this.passengerNum
-        }
-      }else{
-         this.$alert('请输入乘客人数','错 误',{
-            confirmButtonText:'确定',
-          })
-      }
-      ansList.planeNum = this.planeNum;
-      ansList.agentList = this.selectAgent;
-      for(var i = 0 ;i<this.num;i++){
-        let tmp = {
-          date:"",
-          fromCityAndToCity:""
-        }
-        tmp.date = this.$refs.query[i].value1;
-        tmp.fromCityAndToCity = this.$refs.query[i].getFromCityAndToCity();
-        ansList.planeList.push(tmp);
-      }
-    //  console.log(ansList);
-    this.$store.state.date = [];
-    let that = this;     
-      this.axios.post("http://localhost:8080/api/backend",{...ansList}).then((response) => {
-        console.log(response);
-        that.returnList = response.data;
-      })
-      this.visible = false;
-      this.query = !this.query,
-      this.res = !this.res;
-    },  
-    handleClose(done){
-      done();
-    },
-  }
 }
 </script>
 
