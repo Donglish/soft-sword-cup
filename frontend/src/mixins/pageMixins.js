@@ -79,10 +79,10 @@ export const pageMixins = {
               tmp.fromCityAndToCity = this.$refs.query[i].getFromCityAndToCity();
               ansList.planeList.push(tmp);
             }
-            console.log(ansList);
+            console.log(JSON.stringify({...ansList}));
           this.$store.state.date = [];
           let that = this;     
-            this.axios.post("http://localhost:8080/api",{...ansList}).then((response) => {
+            this.axios.post("http://localhost:8080/api",JSON.stringify({...ansList})).then((response) => {
               console.log(response);
               that.returnList = response.data;
             })

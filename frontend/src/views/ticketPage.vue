@@ -138,7 +138,6 @@ export default {
       bgc:"",
       wid:"96%",
       num: 1,
-      programNum:2,
       passengerNum:"",
       query:true,
       res:false,
@@ -234,134 +233,37 @@ export default {
            part:[
              {
                planeInfo:{
-                 companyName:"国航",
-                 planeType:"0100"
+                 companyName:"",
+                 planeType:""
                 },
                 timeInfo:{
                   start:{
-                    startDate:"2022年7月5日",
-                    startTime:"20:20",
-                    startCity:"长沙"
+                    startDate:"",
+                    startTime:"",
+                    startCity:""
                   },
                   end:{
-                    endDate:"2022年7月5日",
-                    endTime:"23:20",
-                    endCity:"南京"
+                    endDate:"",
+                    endTime:"",
+                    endCity:""
                   }
                 },
                 cabin:[
                   {
-                    cabinType:"经济舱",
-                    num:"3",
-                    singlePrice:"230"
+                    cabinType:"",
+                    num:"",
+                    singlePrice:""
                   },
                   {
-                    cabinType:"商务舱",
-                    num:"2",
-                    singlePrice:"140"
+                    cabinType:"",
+                    num:"",
+                    singlePrice:""
                   }
                 ],
-                partPrice:"4000"
-             },
-             {
-               planeInfo:{
-                 companyName:"南航",
-                 planeType:"0101"
-                },
-                timeInfo:{
-                  start:{
-                    startDate:"2022年7月6日",
-                    startTime:"11:30",
-                    startCity:"南京"
-                  },
-                  end:{
-                    endDate:"2022年7月6日",
-                    endTime:"17:20",
-                    endCity:"北京"
-                  }
-                },
-                cabin:[
-                  {
-                    cabinType:"经济舱",
-                    num:"3",
-                    singlePrice:"230"
-                  },
-                  {
-                    cabinType:"商务舱",
-                    num:"2",
-                    singlePrice:"140"
-                  }
-                ],
-                partPrice:"5000"
+                partPrice:""
              },
            ],
           },
-          { 
-           part:[
-             {
-               planeInfo:{
-                 companyName:"东航",
-                 planeType:"0110"
-                },
-                timeInfo:{
-                  start:{
-                    startDate:"2022年7月5日",
-                    startTime:"9:20",
-                    startCity:"长沙"
-                  },
-                  end:{
-                    endDate:"2022年7月5日",
-                    endTime:"12:20",
-                    endCity:"南京"
-                  }
-                },
-                cabin:[
-                  {
-                    cabinType:"经济舱",
-                    num:"3",
-                    singlePrice:"230"
-                  },
-                  {
-                    cabinType:"商务舱",
-                    num:"2",
-                    singlePrice:"140"
-                  }
-                ],
-                partPrice:"3900"
-             },
-             {
-               planeInfo:{
-                 companyName:"川航",
-                 planeType:"0131"
-                },
-                timeInfo:{
-                  start:{
-                    startDate:"2022年7月6日",
-                    startTime:"10:20",
-                    startCity:"南京"
-                  },
-                  end:{
-                    endDate:"2022年7月6日",
-                    endTime:"15:50",
-                    endCity:"北京"
-                  }
-                },
-                cabin:[
-                  {
-                    cabinType:"经济舱",
-                    num:"3",
-                    singlePrice:"230"
-                  },
-                  {
-                    cabinType:"商务舱",
-                    num:"2",
-                    singlePrice:"140"
-                  }
-                ],
-                partPrice:"5200"
-             },
-           ],
-          }
           ],
     }
   },
