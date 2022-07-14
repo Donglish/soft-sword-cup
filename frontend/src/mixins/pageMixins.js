@@ -81,7 +81,7 @@ export const pageMixins = {
             }
           this.$store.state.date = [];
           let that = this;     
-            this.axios.post("http://localhost:8089/api/test",{...ansList}).then((response) => {
+            this.axios.post("/api/test",{...ansList}).then((response) => {
               that.returnList = response.data.returnList;
             })
             this.visible = false;
