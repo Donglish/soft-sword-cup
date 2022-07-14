@@ -85,7 +85,7 @@ export default {
     methods:{
         deleteItem(){
             this.showTotal = false;
-            this.$store.commit('deleteDate');
+            this.$store.commit('deleteDate',this.id-1);
             this.$emit('increment',-1);
         },
         change(){
@@ -96,8 +96,8 @@ export default {
                 fromCity:"",
                 toCity:""
             }
-            param.fromCity = this.$refs.city.defaultSearchValue;
-            param.toCity = this.$refs.city.defaultSearchValue2;
+            param.fromCity = this.$refs.city.defaultSearchValue.replace(/^\s*|\s*$/g,'');;
+            param.toCity = this.$refs.city.defaultSearchValue2.replace(/^\s*|\s*$/g,'');;
             return param;
         },
     },
@@ -109,8 +109,8 @@ export default {
     },
     watch:{
         value1:{
-            handler(val,oldVal){
-                this.$store.commit('changeDate',val);
+            handler(val){
+                this.$store.commit('changeDate',val,this.id-1);
             }
         }
     }

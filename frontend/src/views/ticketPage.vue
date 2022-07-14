@@ -109,18 +109,24 @@
                 margin-top:10px      
               "
             >    
-             <div v-for="(item,id) in returnList" 
+             <div v-show="returnList.length>0" v-for="(item,id) in returnList" 
                   :key="id" 
                   :style="{height:scrollHeight,backgroundColor:'#f2f6fc',borderRadius:'8px',marginTop:'10px',width:'96%'}" 
                   >
                 <div style="padding-top:10px;margin-left:48%;font-size:20px;color:#999">方案{{id+1}}</div>
                 <result v-for="(item1,id1) in item.part" :key="id1"
                       :planeInfo="item1.planeInfo"
-                      :timeInfo="item1.timeInfo"
+                      :start="item1.start"
+                      :end="item1.end"
                       :cabin="item1.cabin"
                       :partPrice="item1.partPrice"
                 ></result>
              </div>             
+             <div v-show="returnList.length === 0" style="margin-top:40px;margin-left:30px;background-color:#f2f6fc;font-size:50px;border-radius:10px;width:950px;height:300px">
+               <div style="padding-top:100px;margin-left:150px;color:#999">
+                 很抱歉，没有找到合适的航班
+               </div>
+             </div>
             </el-scrollbar>
           </div>      
       </el-collapse-transition>
@@ -236,8 +242,7 @@ export default {
                  companyName:"",
                  planeType:""
                 },
-                timeInfo:{
-                  start:{
+                start:{
                     startDate:"",
                     startTime:"",
                     startCity:""
@@ -246,7 +251,6 @@ export default {
                     endDate:"",
                     endTime:"",
                     endCity:""
-                  }
                 },
                 cabin:[
                   {
@@ -254,11 +258,6 @@ export default {
                     num:"",
                     singlePrice:""
                   },
-                  {
-                    cabinType:"",
-                    num:"",
-                    singlePrice:""
-                  }
                 ],
                 partPrice:""
              },

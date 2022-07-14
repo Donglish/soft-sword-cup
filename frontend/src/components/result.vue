@@ -11,31 +11,30 @@
       <div class="timeInfo">
         <div style="display:inline-block">
           <div style="font-size:13px;color:#999;text-align:center">
-              {{this.timeInfo.start.startDate}}
+              {{this.start.startDate}}
           </div>
           <div style="font-size:25px;font-weight:600;text-align:center">
-              {{this.timeInfo.start.startTime}}
+              {{this.start.startTime}}
           </div>
           <div style="font-size:13px;text-align:center;color:#999" >
-              {{this.timeInfo.start.startCity}}
+              {{this.start.startCity}}
           </div>
         </div>
-        <div style="display:inline-block;margin-left:10px;">
-          <div style="margin-left:10px;color: #409EFF;font-size:10px;">
-            {{this.cabin[0].cabinType}}*{{this.cabin[0].num}}
-            {{this.cabin[1].cabinType}}*{{this.cabin[1].num}}
+        <div style="display:inline-block;margin-left:5px;">
+          <div style="margin-left:45px;color: #409EFF;font-size:9px;" v-for="(item,id) in cabin" :key="id">
+            {{item.cabinType}}*{{item.num}}
           </div>
           <img src="../assets/arrow1.png" alt="" style="width:150px;height:20px">
         </div>
-        <div style="display:inline-block;margin-left:10px;margin-top:10px">
+        <div style="display:inline-block;margin-left:5px;margin-top:10px">
            <div style="font-size:13px;color:#999;text-align:center">
-              {{this.timeInfo.end.endDate}}
+              {{this.end.endDate}}
            </div>
            <div style="font-size:25px;font-weight:600;text-align:center">
-              {{this.timeInfo.end.endTime}}
+              {{this.end.endTime}}
           </div>
           <div style="font-size:13px;text-align:center;color:#999;"> 
-              {{this.timeInfo.end.endCity}}
+              {{this.end.endCity}}
           </div>
         </div>
       </div>
@@ -65,7 +64,10 @@ export default {
       planeInfo:{
         required:true
       },
-      timeInfo:{
+      start:{
+        required:true
+      },
+      end:{
         required:true
       },
       cabin:{

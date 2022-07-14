@@ -6,18 +6,21 @@ Vue.use(Vuex)
 const actions = {}
 
 const mutations = {
- changeDate(state,newDate){
+ changeDate(state,newDate,id){
     if(state.date.length === 0){
         state.date.push(newDate);
     }
+    else if(newDate === null){
+       state.date.splice(state.date.indexOf(id),1);
+    }
     else{
-        if(newDate.getTime() > state.date[state.date.length-1].getTime()){
+        if(state.date.length > 0 && newDate.getTime() > state.date[state.date.length-1].getTime()){
             state.date.push(newDate);
         }
     }
  },
- deleteDate(state){
-     state.date.pop();
+ deleteDate(state,id){
+    state.date.splice(state.date.indexOf(id),1);
  }
 }
 

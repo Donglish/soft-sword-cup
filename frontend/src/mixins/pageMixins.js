@@ -79,12 +79,10 @@ export const pageMixins = {
               tmp.fromCityAndToCity = this.$refs.query[i].getFromCityAndToCity();
               ansList.planeList.push(tmp);
             }
-            console.log(JSON.stringify({...ansList}));
           this.$store.state.date = [];
           let that = this;     
-            this.axios.post("http://localhost:8080/api",JSON.stringify({...ansList})).then((response) => {
-              console.log(response);
-              that.returnList = response.data;
+            this.axios.post("http://localhost:8089/api/test",{...ansList}).then((response) => {
+              that.returnList = response.data.returnList;
             })
             this.visible = false;
             this.query = !this.query,
@@ -106,7 +104,6 @@ export const pageMixins = {
               this.checkTime(month + 1) +
               "-" +
               this.checkTime(data) +
-              " " +
               this.checkTime(hours) +
               ":" +
               this.checkTime(minute) +
