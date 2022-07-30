@@ -83,6 +83,9 @@ export const pageMixins = {
           let that = this;     
             this.axios.post("/api/test",{...ansList}).then((response) => {
               that.returnList = response.data.returnList;
+              // that.returnList.array.forEach(element => {
+              //   element.part.sort((a,b) =>parseInt(a.cabin.singlePrice) > parseInt(b.cabin.singlePrice));
+              // });
             })
             this.visible = false;
             this.query = !this.query,

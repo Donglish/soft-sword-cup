@@ -106,14 +106,14 @@
               style=
               "width:100%;
                 height:500px;  
-                margin-top:10px      
+                margin-top:10px      part
               "
             >    
-             <div v-show="returnList.length>0" v-for="(item,id) in returnList" 
+             <div v-show="returnList[0].part[0].planeInfo.companyName !== '**'" v-for="(item,id) in returnList" 
                   :key="id" 
-                  :style="{height:scrollHeight,backgroundColor:'#f2f6fc',borderRadius:'8px',marginTop:'10px',width:'96%'}" 
+                  :style="{height:scrollHeight,backgroundColor:'#f2f6fc',borderRadius:'8px',marginTop:'10px',marginBottom:'20px',width:'96%'}" 
                   >
-                <div style="padding-top:10px;margin-left:48%;font-size:20px;color:#999">方案{{id+1}}</div>
+                <div style="padding-top:10px;margin-left:47%;font-size:20px;color:#999">方案{{id+1}} <span v-for="(item2,id2) in selectAgent" :key="id2" style="font-size:7px">{{item2}}&nbsp;</span></div>
                 <result v-for="(item1,id1) in item.part" :key="id1"
                       :planeInfo="item1.planeInfo"
                       :start="item1.start"
@@ -122,9 +122,12 @@
                       :partPrice="item1.partPrice"
                 ></result>
              </div>             
-             <div v-show="returnList.length === 0" style="margin-top:40px;margin-left:30px;background-color:#f2f6fc;font-size:50px;border-radius:10px;width:950px;height:300px">
-               <div style="padding-top:100px;margin-left:150px;color:#999">
+             <div v-show="returnList[0].part[0].planeInfo.companyName === '**'" style="margin-top:40px;margin-left:30px;background-color:#f2f6fc;font-size:35px;border-radius:10px;width:950px;height:300px">
+               <div style="padding-top:100px;margin-left:230px;color:#999">
                  很抱歉，没有找到合适的航班
+               </div>
+               <div style="margin-left:230px;color:#999;margin-top:20px">
+                 请选择其他时间或增加代理人
                </div>
              </div>
             </el-scrollbar>

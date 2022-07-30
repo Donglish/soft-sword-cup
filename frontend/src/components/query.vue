@@ -84,9 +84,16 @@ export default {
     },
     methods:{
         deleteItem(){
-            this.showTotal = false;
-            this.$store.commit('deleteDate',this.id-1);
-            this.$emit('increment',-1);
+            if(this.$store.state.date.length === 1){
+                 this.$alert('输入的行程数最少为一','错 误',{
+                  confirmButtonText:'确定',
+                })   
+            }
+            else{
+                this.showTotal = false;
+                this.$store.commit('deleteDate',this.id-1);
+                this.$emit('increment',-1);
+            }
         },
         change(){
             this.showDate = !this.showDate;
