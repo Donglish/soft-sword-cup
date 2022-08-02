@@ -20,7 +20,8 @@
                         <el-date-picker
                             v-model="value1"
                             type="date"
-                            placeholder="选择日期"                       
+                            placeholder="选择日期"   
+                            :picker-options="pickerOptions"
                         >
                         </el-date-picker>
                     </div>
@@ -36,7 +37,7 @@
                     class = "delete"  
                     circle
                     type="text"
-                    @click="showTotal = false"
+                    @click="deleteItem()"
                 >
                     <i 
                     class="el-icon-close"
@@ -68,7 +69,32 @@ export default {
     components:{
         city
     },
+    computed:{
+        pickerOptions(){
+            var that = this;
+            return {
+                disabledDate(time) {
+                    if(that.$store.state.date.length === 0){
+                        return false;
+                    }
+                    return time.getTime() < that.$store.state.date[that.$store.state.date.length-1].getTime();
+                },
+            }
+        }
+    },
     methods:{
+        deleteItem(){
+            if(this.$store.state.date.length === 1){
+                 this.$alert('输入的行程数最少为一','错 误',{
+                  confirmButtonText:'确定',
+                })   
+            }
+            else{
+                this.showTotal = false;
+                this.$store.commit('deleteDate',this.id-1);
+                this.$emit('increment',-1);
+            }
+        },
         change(){
             this.showDate = !this.showDate;
         },
@@ -77,15 +103,22 @@ export default {
                 fromCity:"",
                 toCity:""
             }
-            param.fromCity = this.$refs.city.defaultSearchValue;
-            param.toCity = this.$refs.city.defaultSearchValue2;
+            param.fromCity = this.$refs.city.defaultSearchValue.replace(/^\s*|\s*$/g,'');;
+            param.toCity = this.$refs.city.defaultSearchValue2.replace(/^\s*|\s*$/g,'');;
             return param;
-        }
+        },
     },
     props:{
         id:{
             type:Number,
             required:true
+        }
+    },
+    watch:{
+        value1:{
+            handler(val){
+                this.$store.commit('changeDate',val,this.id-1);
+            }
         }
     }
 }

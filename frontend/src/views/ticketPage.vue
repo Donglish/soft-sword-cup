@@ -3,7 +3,11 @@
     <div class="container">
       <el-collapse-transition>
         <div v-show="this.query">
-          <el-input v-model="passengerNum" placeholder="请输入乘客人数" style="width:150px;margin-top:30px;margin-left:50px"/>
+          <el-input 
+            v-model="passengerNum" 
+            placeholder="请输入乘客人数" 
+            style="width:150px;margin-top:30px;margin-left:50px"
+          />
           <el-select
            v-model="selectAgent"
            multiple
@@ -28,7 +32,7 @@
               "
           >      
             <div v-for="(item,id) in num" :key="id">
-            <query :id="id+1" ref="query"></query>
+            <query :id="id+1" ref="query" v-on:increment="changeNum"></query>
             </div>
           </el-scrollbar >
           <el-button 
@@ -38,7 +42,7 @@
                 margin-top:5px
               "
               icon="el-icon-plus"
-              @click="num = num + 1"
+              @click="addAnother()"
             >
               再加一程
             </el-button>
@@ -70,11 +74,12 @@
               title="请输入要返回的最多航班方案数"
               :visible.sync="visible"
               width="30%"  
+              style="margin-top:10%"
             >
               <span>
                 <el-input
                   v-model="planeNum"
-                  style="margin-left:20%;width:250px"
+                  style="margin-left:20%;margin-top:3%;width:250px"
                   :before-close="handleClose"
                   placeholder="请输入要返回的最多航班方案数"
                 >
@@ -101,25 +106,46 @@
               style=
               "width:100%;
                 height:500px;  
-                margin-top:10px      
+                margin-top:10px      part
               "
             >    
-             <div v-for="(item,id) in num" :key="id">
-              <result></result>
-            </div>
+             <div v-show="returnList[0].part[0].planeInfo.companyName !== '**'" v-for="(item,id) in returnList" 
+                  :key="id" 
+                  :style="{height:scrollHeight,backgroundColor:'#f2f6fc',borderRadius:'8px',marginTop:'10px',marginBottom:'20px',width:'96%'}" 
+                  >
+                <div style="padding-top:10px;margin-left:47%;font-size:20px;color:#999">方案{{id+1}} <span v-for="(item2,id2) in selectAgent" :key="id2" style="font-size:7px">{{item2}}&nbsp;</span></div>
+                <result v-for="(item1,id1) in item.part" :key="id1"
+                      :planeInfo="item1.planeInfo"
+                      :start="item1.start"
+                      :end="item1.end"
+                      :cabin="item1.cabin"
+                      :partPrice="item1.partPrice"
+                ></result>
+             </div>             
+             <div v-show="returnList[0].part[0].planeInfo.companyName === '**'" style="margin-top:40px;margin-left:30px;background-color:#f2f6fc;font-size:35px;border-radius:10px;width:950px;height:300px">
+               <div style="padding-top:100px;margin-left:230px;color:#999">
+                 很抱歉，没有找到合适的航班
+               </div>
+               <div style="margin-left:230px;color:#999;margin-top:20px">
+                 请选择其他时间或增加代理人
+               </div>
+             </div>
             </el-scrollbar>
           </div>      
       </el-collapse-transition>
       </div>
   </div>
 </template>
-
 <script>
 import query from '@/components/query.vue'
 import result from '@/components/result.vue'
+import {pageMixins} from '@/mixins/pageMixins'
 export default {
+  mixins:[pageMixins],
   data(){
     return{
+      bgc:"",
+      wid:"96%",
       num: 1,
       passengerNum:"",
       query:true,
@@ -129,134 +155,124 @@ export default {
       planeNum:"",
       visible:false,
       agentList:[{
-        value: '1',
-        label:"携程",
+        value: 'HKG001',
+        label:"HKG001",
         },
         {
-        value: '2',
-        label:"美团",
+        value: 'BJS001',
+        label:"BJS001",
         },
         {
-        value: '3',
-        label: "滴滴",
+        value: 'TSN001',
+        label: "TSN001",
         },
         {
-        value: '4',
-        label:"去哪儿",
+        value: 'SHA001',
+        label:"SHA001",
         },
         {
-        value: '5',
-        label:"美亚",
+        value: 'CAN001',
+        label:"CAN001",
         },
         {
-        value: '6',
-        label:"纵横天地",
+        value: 'SZX001',
+        label:"SZX001",
         },
         {
-        value: '7',
-        label:"今日天下通",
+        value: 'NKG001',
+        label:"NKG001",
         },
         {
-        value: '8',
-        label:"51BOOK",
+        value: 'CTU001',
+        label:"CTU001",
         },
         {
-        value: '9',
-        label:"票盟",
+        value: 'CKG001',
+        label:"CKG001",
         },
         {
-        value: '10',
-        label:"国航",
+        value: 'KMG001',
+        label:"KMG001",
         },
         {
-        value: '11',
-        label:"南航",
+        value: 'HGH001',
+        label:"HGH001",
         },
         {
-        value: '12',
-        label:"东航",
+        value: 'XIY001',
+        label:"XIY001",
         },
         {
-        value: '13',
-        label:"海航",
+        value: 'WUH001',
+        label:"WUH001",
         },
         {
-        value: '14',
-        label:"山航",
+        value: 'CGO001',
+        label:"CGO001",
         },
         {
-        value: '15',
-        label:"上航",
+        value: 'CGQ001',
+        label:"CGQ001",
         },
         {
-        value: '16',
-        label:"厦航",
+        value: 'CSX001',
+        label:"CSX001",
         },
         {
-        value: '17',
-        label:"川航",
+        value: 'TYN001',
+        label:"TYN001",
         },
         {
-        value: '18',
-        label:"幸福航空",
+        value: 'DLC001',
+        label:"DLC001",
         },
         {
-        value: '19',
-        label:"吉祥航空",
+        value: 'FOC001',
+        label:"FOC001",
         },
         {
-        value: '20',
-        label:"春秋航空"
+        value: 'XMN001',
+        label:"XMN001"
         },
-    ],
+      ],
       selectAgent:[],    
-      selectAll: false  
+      selectAll: false,
+      returnList:[
+          { 
+           part:[
+             {
+               planeInfo:{
+                 companyName:"",
+                 planeType:""
+                },
+                start:{
+                    startDate:"",
+                    startTime:"",
+                    startCity:""
+                  },
+                  end:{
+                    endDate:"",
+                    endTime:"",
+                    endCity:""
+                },
+                cabin:[
+                  {
+                    cabinType:"",
+                    num:"",
+                    singlePrice:""
+                  },
+                ],
+                partPrice:""
+             },
+           ],
+          },
+          ],
     }
   },
   components:{
     query,
     result
   },
-  methods:{
-    nextstep(){
-      let ansList = {
-        passengerNum: "",
-        planeNum:"",
-        agentList:[],
-        planeList:[],
-      }
-      if(this.passengerNum != ""){
-        if(Number(this.passengerNum) > 0){
-          ansList.passengerNum = this.passengerNum
-        }
-      }else{
-         this.$alert('请输入乘客人数','错 误',{
-            confirmButtonText:'确定',
-          })
-      }
-      ansList.planeNum = this.planeNum;
-      ansList.agentList = this.selectAgent;
-      for(var i = 0 ;i<this.num;i++){
-        let tmp = {
-          date:"",
-          fromCityAndToCity:""
-        }
-        tmp.date = this.$refs.query[i].value1;
-        tmp.fromCityAndToCity = this.$refs.query[i].getFromCityAndToCity();
-        ansList.planeList.push(tmp);
-      }
-      console.log(ansList);
-      // this.axios.post("",).then((response) => {
-
-      // })
-      this.visible = false;
-      this.query = !this.query,
-      this.res = !this.res;
-    },  
-    handleClose(done){
-      done();
-    },
-  }
 }
 </script>
 

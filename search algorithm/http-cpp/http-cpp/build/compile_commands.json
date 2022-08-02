@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/Users/lxlx-cx/demo/http-cpp/build",
+  "command": "/usr/bin/clang++  -I/Users/lxlx-cx/demo/http-cpp/./include -Wall -g -pthread -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk -std=gnu++11 -o CMakeFiles/HelloHttp.dir/http-server.cpp.o -c /Users/lxlx-cx/demo/http-cpp/http-server.cpp",
+  "file": "/Users/lxlx-cx/demo/http-cpp/http-server.cpp"
+}
+]

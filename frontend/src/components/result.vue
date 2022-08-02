@@ -1,31 +1,40 @@
 <template>
   <div class="result">
       <div class="airCompany">
-          <div style="margin-top:5px">
-            {{this.information.planeInfo.companyName}}
+          <div style="margin-top:5px;font-size:20px">
+            {{this.planeInfo.companyName}}
           </div>
-          <div style="margin-top:6px;color:#409EFF;font-size:13px">
-            {{this.information.planeInfo.planeType}}
+          <div style="margin-top:6px;color:#409EFF;font-size:17px">
+            {{this.planeInfo.planeType}}
           </div>
       </div>
       <div class="timeInfo">
         <div style="display:inline-block">
-          <div style="font-size:30px;font-weight:600">
-              {{this.information.timeInfo.start.startTime}}
+          <div style="font-size:13px;color:#999;text-align:center">
+              {{this.start.startDate}}
           </div>
-          <div style="font-size:13px;text-align:center;color: #999;" >
-              {{this.information.timeInfo.start.startCity}}
+          <div style="font-size:25px;font-weight:600;text-align:center">
+              {{this.start.startTime}}
+          </div>
+          <div style="font-size:13px;text-align:center;color:#999" >
+              {{this.start.startCity}}
           </div>
         </div>
-        <div style="display:inline-block;margin-left:10px;">
+        <div style="display:inline-block;margin-left:5px;">
+          <div style="margin-left:45px;color: #409EFF;font-size:9px;" v-for="(item,id) in cabin" :key="id">
+            {{item.cabinType}}*{{item.num}}
+          </div>
           <img src="../assets/arrow1.png" alt="" style="width:150px;height:20px">
         </div>
-        <div style="display:inline-block;margin-left:10px;margin-top:10px">
-           <div style="font-size:30px;font-weight:600">
-              {{this.information.timeInfo.end.endTime}}
+        <div style="display:inline-block;margin-left:5px;margin-top:10px">
+           <div style="font-size:13px;color:#999;text-align:center">
+              {{this.end.endDate}}
+           </div>
+           <div style="font-size:25px;font-weight:600;text-align:center">
+              {{this.end.endTime}}
           </div>
-          <div style="font-size:13px;text-align:center;color: #999;"> 
-              {{this.information.timeInfo.end.endCity}}
+          <div style="font-size:13px;text-align:center;color:#999;"> 
+              {{this.end.endCity}}
           </div>
         </div>
       </div>
@@ -35,7 +44,7 @@
             ￥
           </div>
            <div style="display:inline-block;font-size:35px;font-weight:500">
-            {{this.information.price}}
+            {{this.partPrice}}
            </div>
         </div>
         <div style="font-size:13px;margin-top:-3px;margin-left:65px;color: #999">
@@ -49,23 +58,23 @@
 export default {
     data(){
       return{
-        information:{
-          planeInfo:{
-            companyName:"南方航空",
-            planeType:"CZ3825 波音737(中)"
-          },
-          timeInfo:{
-            start:{
-              startTime:"20:40",
-              startCity:"长沙"
-            },
-            end:{
-              endTime:"22:40",
-              endCity:"南京"
-            }
-          },
-          price:"1000",
-        }
+      }
+    },
+    props:{
+      planeInfo:{
+        required:true
+      },
+      start:{
+        required:true
+      },
+      end:{
+        required:true
+      },
+      cabin:{
+        required:true
+      },
+      partPrice:{
+        required:true
       }
     }
 }
@@ -76,11 +85,11 @@ export default {
     margin-left: 50px;
     background-color: white;
     border: 1px solid gainsboro;
-    height: 85px;
+    height: 95px;
     width: 900px;
     position: relative;
     box-shadow: 0 0 12px 0 rgb(0 0 0 / 6%);
-    margin-bottom: 10px;
+    margin-top: 10px;
   }
   .result:hover{
     box-shadow: 0 0 15px 0 rgb(0 0 0 / 15%);

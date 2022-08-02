@@ -1,0 +1,1 @@
+GROUP ( libwfrest.a AS_NEEDED ( libz.so libworkflow.so ) ) 
