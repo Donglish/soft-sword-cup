@@ -31,6 +31,7 @@ const state = {
 
 export default new Vuex.Store({
 <<<<<<< HEAD
+<<<<<<< HEAD
   modules:{
     tab,
     date,
@@ -73,6 +74,11 @@ export default new Vuex.Store({
     mutations,
     state,
 >>>>>>> d62925e61070a01079fd7979df1dcb1567a4f61a
+=======
+    actions,
+    mutations,
+    state,
+>>>>>>> parent of 2ea86cf (修改最终版)
 =======
     actions,
     mutations,
