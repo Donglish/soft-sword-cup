@@ -9,7 +9,7 @@
           </div>
       </div>
       <div class="timeInfo">
-        <div>
+        <div style="display:inline-block">
           <div style="font-size:13px;color:#999;text-align:center">
               {{this.start.startDate}}
           </div>
@@ -20,13 +20,13 @@
               {{this.start.startCity}}
           </div>
         </div>
-        <div>
-          <div style="color: #409EFF;font-size:9px; text-align:center" v-for="(item,id) in cabin" :key="id">
+        <div style="display:inline-block;margin-left:5px;">
+          <div style="margin-left:45px;color: #409EFF;font-size:9px;" v-for="(item,id) in cabin" :key="id">
             {{item.cabinType}}*{{item.num}}
           </div>
-          <img src="../assets/images/arrow1.png" alt="" style="width:150px;height:20px">
+          <img src="../assets/arrow1.png" alt="" style="width:150px;height:20px">
         </div>
-        <div>
+        <div style="display:inline-block;margin-left:5px;margin-top:10px">
            <div style="font-size:13px;color:#999;text-align:center">
               {{this.end.endDate}}
            </div>
@@ -47,7 +47,7 @@
             {{this.partPrice}}
            </div>
         </div>
-        <div style="font-size:13px;margin-left:20px;margin-top:-3px;color: #999">
+        <div style="font-size:13px;margin-top:-3px;margin-left:65px;color: #999">
           价格
         </div>
       </div>
@@ -80,36 +80,32 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   .result{
     margin-left: 50px;
-    margin-right:50px;
     background-color: white;
     border: 1px solid gainsboro;
-    height: 100px;
-    width: 1100px;
+    height: 95px;
+    width: 900px;
     position: relative;
     box-shadow: 0 0 12px 0 rgb(0 0 0 / 6%);
     margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
   .result:hover{
     box-shadow: 0 0 15px 0 rgb(0 0 0 / 15%);
   }
   .airCompany{
+    display: inline-block;
     margin-left: 20px;
     width: 300px;
   }
   .timeInfo{
-    width: 380px;
-    margin-left: -150px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: inline-block;
+    /* vertical-align: middle; */
+    width: 400px;
   }
   .priceInfo{
+    display: inline-block;
     margin-left: 30px;
     width:150px;
   }

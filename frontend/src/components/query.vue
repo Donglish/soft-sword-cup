@@ -1,7 +1,9 @@
 <template>
     <el-collapse-transition>
-        <div v-show="showTotal" class="total">
-            <city :id="id" ref="city"></city>
+        <div v-show="showTotal">
+            <div style="display:inline-block">
+               <city :id="id" ref="city"></city>
+            </div>
             <div class="dateContainer">
                 <el-row 
                     style=
@@ -13,7 +15,7 @@
                         出发日期
                     </h4>
                 </el-row>
-                <el-row style="margin-left:10px;" v-show="showDate">
+                <el-row style="margin-left:10px;margin-top:8px" v-show="showDate">
                     <div class="block">
                         <el-date-picker
                             v-model="value1"
@@ -29,6 +31,7 @@
                 style=
                 "display:inline-block;
                 position:relative;
+                margin-left:30px;
                 ">
                 <el-button 
                     class = "delete"  
@@ -74,19 +77,14 @@ export default {
                     if(that.$store.state.date.length === 0){
                         return false;
                     }
-                    else if(that.$store.state.date.length > 0){
-                        return time.getTime() < that.$store.state.date.date[that.$store.state.date.length-1].getTime();
-                    }
-                    else{
-                        return false;
-                    }
+                    return time.getTime() < that.$store.state.date[that.$store.state.date.length-1].getTime();
                 },
             }
         }
     },
     methods:{
         deleteItem(){
-            if(this.$store.state.date.length === 0){
+            if(this.$store.state.date.length === 1){
                  this.$alert('输入的行程数最少为一','错 误',{
                   confirmButtonText:'确定',
                 })   
@@ -127,13 +125,6 @@ export default {
 </script>
 
 <style>
-    .total{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        opacity:1;
-    }   
     .dateContainer {
         border-radius: 6px;
         background-color:#ffffff;
@@ -141,6 +132,8 @@ export default {
         box-shadow: 0 0 12px 0 rgb(0 0 0 / 6%);
         width:330px;
         height: 65px;
+        margin-left: 20px;
+        margin-top: 9px;
         display: inline-block;
         vertical-align: middle;
     }
@@ -151,7 +144,6 @@ export default {
         width:35px;
         height:35px;
         background-color: #ffffff;
-        margin-right: 50px;
     }
     .delete:hover{
         background-color: #C0C4CC !important;
