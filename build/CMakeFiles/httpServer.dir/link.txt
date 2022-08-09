@@ -1,0 +1,1 @@
+/usr/bin/clang++ -Wall -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/HttpServer.dir/http-server.cpp.o" -o HttpServer   -L/Users/lxlx-cx/demo/http-cpp/./lib 
