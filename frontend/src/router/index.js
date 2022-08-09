@@ -1,17 +1,36 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ticketPage from '@/views/ticketPage'
 Vue.use(VueRouter)
+
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location){
+  return originalPush.call(this,location).catch(err => err)
+}
 
 const routes = [
   {
     path: '/',
-    redirect: '/home'
+    name: 'Main',
+    component: () => import("../views/Main.vue"),
+    redirect:'/home',
+    children:[
+      {
+        path:'/home',
+        name:'home',
+        component: ()=> import("../views/home")
+      },
+      {
+        path:'/result',
+        name:'result',
+        component: ()=> import("../views/result")
+      }
+    ]
   },
- {
-   path: '/home',
-   component: ticketPage
- },
+  {
+    path:'/login',
+    name:'login',
+    component: ()=> import("../views/Login/login")
+  }
 ]
 
 const router = new VueRouter({

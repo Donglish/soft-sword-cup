@@ -8,10 +8,8 @@ export const pageMixins = {
             }
         }
       },
-    computed:{
-        scrollHeight(){
-          return this.num*100 + 75 + 'px'
-        }
+    mounted(){
+      this.agentList = this.$store.state.user.info.agentList
     },
     methods:{
         addAnother(){
@@ -21,7 +19,7 @@ export const pageMixins = {
                     confirmButtonText:'确定',
                 })
                 }else{
-                  if(this.num === this.returnList.length){
+                  if(this.num === this.$store.state.result.returnList.length){
                      let param = { 
                       companyName:"",
                       planeType:"",
@@ -32,9 +30,13 @@ export const pageMixins = {
                       price:"",
                       ticketType:""
                       };
-                    this.returnList.push(param);
+                    this.$store.state.result.returnList.push(param);
                   }
                   this.num = this.num + 1;
+                  let div = this.$refs["scrollbar"].$refs["wrap"];
+                  this.$nextTick(() => {
+                    div.scrollTop = div.scrollHeight;
+                  })
                 }
             }
             else if(this.num === 0 ){
@@ -49,7 +51,7 @@ export const pageMixins = {
           changeNum(val){
             this.num += val;
             if(val === -1){
-              this.returnList.pop();
+              this.$store.state.result.returnList.pop();
             }
           },
           nextstep(){
@@ -82,14 +84,11 @@ export const pageMixins = {
           this.$store.state.date = [];
           let that = this;     
             this.axios.post("/api/test",{...ansList}).then((response) => {
-              that.returnList = response.data.returnList;
-              // that.returnList.array.forEach(element => {
-              //   element.part.sort((a,b) =>parseInt(a.cabin.singlePrice) > parseInt(b.cabin.singlePrice));
-              // });
+              that.$store.state.result.returnList = response.data.returnList.reverse();
+              that.$router.push({name:'result'});
             })
             this.visible = false;
-            this.query = !this.query,
-            this.res = !this.res;
+            this.$store.commit('changeVisit');
           },  
           handleClose(done){
             done();

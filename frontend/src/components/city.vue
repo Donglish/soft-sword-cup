@@ -33,6 +33,7 @@
             style="margin-top:10px"
             @click.stop="addBeforeActiveAndDOMClick($event)"
             @focus="handleLeftVisible"
+            autocomplete="off"
           >
           <div class="area start-area" :style="{display: leftVisible?'block':'none'}" ref="startAreaRef">
             <div class="city-wrraper" @click.stop>
@@ -89,7 +90,7 @@
       </div>
       <div class="switch-icon" @click.stop="witchLocation($event)">
         <span class="iconfont icon-double-arrows">
-          <img src="../assets/arrow.png" style="width:20px;height:20px"/>
+          <img src="../assets/images/arrow.png" style="width:20px;height:20px"/>
         </span>
       </div>
       <div class="ending" ref="endingRef">
@@ -99,6 +100,7 @@
             style="margin-top:10px"
             @click.stop="addBeforeActiveAndDOMClick($event)"
             @focus="handleRightVisible"
+            autocomplete="off"
            >
           <div class="area ending-area" :style="{display: rightVisible?'block':'none'}" ref="endingAreaRef">
             <div class="city-wrraper" @click.stop>
@@ -568,6 +570,7 @@
 
 <style scoped lang="less">
   .home{
+      opacity:1;
       margin-left: 50px;
       border-radius: 5px;
       background-color: white;
@@ -646,7 +649,7 @@
       .ending{
         position: absolute;
         right: 0;
-        width: 230px;
+        width: 235px;
         height: 100%;
       }
       .ending::before{
@@ -692,7 +695,7 @@
         float: left;
         padding: 0 8px 0 8px;
         margin-right:20px;
-        width: 56px;
+        width: 75px;
         height: 32px;
         line-height: 32px;
         font-size: 14px;
