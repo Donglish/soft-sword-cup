@@ -1,3 +1,4 @@
+import { timeChange} from "@/utils/utils"
 export const pageMixins = {
     watch:{
         num:{
@@ -93,31 +94,6 @@ export const pageMixins = {
           handleClose(done){
             done();
           },
-        timeChange(date) {
-            var year = date.getFullYear(); 
-            var month = date.getMonth(); 
-            var data = date.getDate(); 
-            var hours = date.getHours(); 
-            var minute = date.getMinutes(); 
-            var second = date.getSeconds(); 
-            var time =
-              year +
-              "-" +
-              this.checkTime(month + 1) +
-              "-" +
-              this.checkTime(data) +
-              this.checkTime(hours) +
-              ":" +
-              this.checkTime(minute) +
-              ":" +
-              this.checkTime(second);
-            return time;
-          },
-          checkTime(time){
-            if(time>=0 && time <=9){
-              return "0"+ time;
-            }
-            return time;
-          }, 
+        timeChange,
     }
 }

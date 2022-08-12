@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import result from '@/components/result.vue'
+import result from '@/components/CommonResult.vue'
 export default {
     data(){
         return {
@@ -67,28 +67,13 @@ export default {
             returnList1:[],
             returnList2:[],
             returnList3:[],
+            load:false,
         }
     },
     mounted(){
       this.returnList = this.$store.state.result.returnList;
       this.showList = this.returnList;
       this.selectAgent = this.$store.state.user.selectAgent;
-      this.returnList.forEach((item)=>{
-        let times = checkTime(item.part[0].start.startTime);
-        if(times>=checkTime("00:00") && times < checkTime("08:00")){
-          returnList1.push(item)
-        }
-        else if(times >=checkTime("08:00") && times < checkTime("16:00")){
-          returnList2.push(item)
-        }
-        else{
-          returnList3.push(item)
-        }
-      })
-    },
-    checkTime(time){
-      let arr = time.split(":");
-      return arr[0] + arr[1];
     },
     computed:{
         scrollHeight(){
@@ -96,12 +81,35 @@ export default {
         }
     },
     methods:{
+      checkTime(time){
+      let arr = time.split(":");
+      return arr[0] + arr[1];
+      },
       changeToHome(){
+        this.load = false
         this.$store.commit('clearInfo')
         this.$store.commit('changeVisit');
         this.$router.push({name:'home'})
       },
       changeShow(){
+        if(this.load === false){
+          this.returnList.forEach((item)=>{
+            let times = this.checkTime(item.part[0].start.startTime);
+            let time1 = this.checkTime("08:00");
+            let time2 = this.checkTime("16:00");
+            if(times < time1){
+              this.returnList1.push(item)
+            }
+            else if(times >=time1 && times < time2){
+              this.returnList2.push(item)
+            }
+            else{
+              this.returnList3.push(item)
+            }
+          })
+          this.load = true
+        }
+        console.log(this.returnList1);
         if(this.type === '全部结果'){
           this.showList = this.returnList;
         }

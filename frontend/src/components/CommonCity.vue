@@ -606,6 +606,8 @@
           position: absolute;
           z-index: 3;
           display: block;
+          padding-left: 5px;
+          padding-top:5px;
           width: 100%;
           height: 100%;
           border-radius: 50%;

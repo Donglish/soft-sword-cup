@@ -98,7 +98,7 @@
   </div>
 </template>
 <script>
-import query from '@/components/query.vue'
+import query from '@/components/CommonQuery.vue'
 import {pageMixins} from '@/mixins/pageMixins'
 export default {
   mixins:[pageMixins],

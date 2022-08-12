@@ -83,7 +83,72 @@
                     <div class="max-w-md w-full mx-auto space-y-8">
                         <div class="text-center">
                             <h2 class="mt-6 text-3xl font-bold text-gray-900">欢迎使用</h2>
-                            <p class="mt-2 text-sm text-gray-500"></p>
+                            <p class="mt-2 text-sm text-gray-500">第三方登录</p>
+                        </div>
+                        <div class="flex flex-row justify-center items-center space-x-3">
+                            <a
+                                href=""
+                                class="
+                                    w-11
+                                    h-11
+                                    items-center
+                                    justify-center
+                                    inline-flex
+                                    rounded-2xl
+                                    font-bold
+                                    text-lg
+                                    bg-blue-900
+                                    hover:shadow-lg
+                                    cursor-pointer
+                                    transition
+                                    ease-in
+                                    duration-300
+                                "
+                                ><img
+                                    src="https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png"
+                            /></a>
+                            <a
+                                href=""
+                                class="
+                                    w-11
+                                    h-11
+                                    items-center
+                                    justify-center
+                                    inline-flex
+                                    rounded-2xl
+                                    font-bold
+                                    text-lg text-white
+                                    bg-blue-400
+                                    hover:shadow-lg
+                                    cursor-pointer
+                                    transition
+                                    ease-in
+                                    duration-300
+                                "
+                                ><img
+                                    src="../../assets/images/支付宝logo.png"
+                            /></a>
+                            <a
+                                href="javascript:"
+                                class="
+                                    w-11
+                                    h-11
+                                    items-center
+                                    justify-center
+                                    inline-flex
+                                    rounded-2xl
+                                    font-bold
+                                    text-lg text-white
+                                    bg-blue-500
+                                    hover:shadow-lg
+                                    cursor-pointer
+                                    transition
+                                    ease-in
+                                    duration-300
+                                "
+                                ><img
+                                    src="../../assets/images/QQ.png"
+                            /></a>
                         </div>
                         <div class="flex items-center justify-center space-x-2">
                             <span class="h-px w-16 bg-gray-200"></span>
@@ -155,8 +220,8 @@
                                     >
                                 </div>
                                 <div class="text-sm">
-                                    <a href="#" class="text-indigo-400 hover:text-blue-500"
-                                        >忘记密码？</a
+                                    <div @click="visit()" class="text-indigo-400 hover:text-blue-500"
+                                        >访客模式</div
                                     >
                                 </div>
                             </div>
@@ -197,6 +262,7 @@
 
 <script>
 import {getMenu} from '../../api/data'
+import {guid} from '@/utils/utils.js'
 export default {
     name:'login',
     data(){
@@ -220,6 +286,11 @@ export default {
         }
     },
     methods:{
+        guid,
+        visit(){
+            this.$store.commit('setToken',this.guid())
+            this.$router.push({name:'home'})
+        },
         login(){
             getMenu(this.form).then(({ data: res})=> {
                 if(res.code === 20000){

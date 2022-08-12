@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import city from '@/components/city.vue'
+import city from '@/components/CommonCity.vue'
 export default {
     data(){
      return {
