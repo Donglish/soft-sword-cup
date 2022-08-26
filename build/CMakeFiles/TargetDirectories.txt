@@ -1,3 +1,0 @@
-/Users/lxlx-cx/demo/http-cpp/build/CMakeFiles/HelloHttp.dir
-/Users/lxlx-cx/demo/http-cpp/build/CMakeFiles/edit_cache.dir
-/Users/lxlx-cx/demo/http-cpp/build/CMakeFiles/rebuild_cache.dir

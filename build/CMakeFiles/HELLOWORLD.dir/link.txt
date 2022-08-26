@@ -1,1 +1,0 @@
-/usr/bin/clang++ -Wall -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/HELLOWORLD.dir/http-server.cpp.o" -o HELLOWORLD   -L/Users/lxlx-cx/demo/http-cpp/./lib  -Wl,-rpath,/Users/lxlx-cx/demo/http-cpp/./lib -lwfrest -lworkflow -lz 
